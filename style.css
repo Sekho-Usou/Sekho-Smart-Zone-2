@@ -1,0 +1,258 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f7f8fa;
+  color: #333;
+}
+
+header {
+  background: #111;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header h1 {
+  font-size: 1.5rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #00d084;
+}
+
+.hero {
+  background: linear-gradient(to right, #00b09b, #96c93d);
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero .btn {
+  background: white;
+  color: #111;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 15px;
+}
+
+.hero .btn:hover {
+  background: #f4f4f4;
+}
+
+section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+#products {
+  background: #fff;
+}
+
+.search-bar input {
+  padding: 10px 15px;
+  width: 80%;
+  max-width: 400px;
+  margin: 20px auto;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+
+.filter-buttons {
+  margin-bottom: 20px;
+}
+
+.filter-buttons button {
+  background: #00b09b;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  margin: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.filter-buttons button:hover {
+  background: #008f7a;
+}
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.product-card {
+  background: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 220px;
+  padding: 15px;
+  transition: transform 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.buy-btn {
+  display: inline-block;
+  background: #00b09b;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.buy-btn:hover {
+  background: #008f7a;
+}
+
+footer {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+}
+
+#contact {
+  background-color: #f9f9f9;
+  padding: 40px 20px;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+#contact h2 {
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #333;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px auto;
+  gap: 12px;
+  font-size: 16px;
+}
+
+.contact-item img.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.contact-item a {
+  color: #075e54;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contact-item a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- FILTER SLIDER ---------- */
+.filter-wrapper{
+  position:relative;
+  display:flex;
+  align-items:center;
+  max-width:100%;
+  margin:1rem 0;
+}
+.filter-buttons{
+  display:flex;
+  gap:.6rem;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;   /* smooth iOS scroll */
+  padding:.2rem 0;
+
+}
+.filter-buttons::-webkit-scrollbar{display:none;} /* hide ugly bar */
+.filter-buttons button{
+  white-space:nowrap;
+  flex:0 0 auto;
+  padding:.6rem 1.1rem;
+  border:none;
+  background:#111;
+  color:#fff;
+  border-radius:20px;
+  cursor:pointer;
+  font-size:.95rem;
+}
+.filter-buttons button:hover{background:#333;}
+
+.scroll-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,.6);
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  width:32px;
+  height:32px;
+  font-size:1.2rem;
+  cursor:pointer;
+  z-index:2;
+  display:none;
+}
+.scroll-btn.left{left:4px;}
+.scroll-btn.right{right:4px;}
+
+@media(max-width:600px){
+  .scroll-btn{display:block;}
+}
+
+.scroll-btn{
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .25s ease, visibility .25s ease;
+}
+@media(max-width:600px){
+  .scroll-btn{
+    opacity:1;
+    visibility:visible;
+  }
+}
+
+.scroll-btn:active{
+  transform:translateY(-50%) scale(.85);
+  transition:transform .1s ease;
+}
+
+.discount {
+  color: red;
+  font-weight: bold;
+}
