@@ -1,74 +1,78 @@
+/* ---------- 1.  RESET & BASE ---------- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
-
 body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f7f8fa;
+  font-family: "Poppins", sans-serif;
+  background: #f7f8fa;
   color: #333;
+  line-height: 1.4;
 }
 
+/* ---------- 2.  HEADER ---------- */
 header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
   background: #111;
-  color: white;
+  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  padding: .8rem clamp(1rem, 3vw, 2rem);
+  flex-wrap: wrap;
+  gap: .5rem 1rem;
 }
-
 header h1 {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
 }
-
 nav a {
-  color: white;
+  color: #fff;
   text-decoration: none;
-  margin: 0 10px;
-  font-weight: bold;
+  margin: 0 .6rem;
+  font-weight: 600;
 }
-
 nav a:hover {
   color: #00d084;
 }
 
+/* ---------- 3.  HERO ---------- */
 .hero {
-  background: linear-gradient(to right, #00b09b, #96c93d);
-  color: white;
+  background: linear-gradient(90deg, #00b09b, #96c93d);
+  color: #fff;
   text-align: center;
-  padding: 80px 20px;
+  padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 3rem);
 }
-
+.hero h2 {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  margin-bottom: 1rem;
+}
 .hero .btn {
-  background: white;
-  color: #111;
-  padding: 10px 20px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: bold;
   display: inline-block;
-  margin-top: 15px;
+  margin-top: 1rem;
+  background: #fff;
+  color: #111;
+  padding: .7rem 1.8rem;
+  border-radius: 30px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background .25s;
 }
-
 .hero .btn:hover {
   background: #f4f4f4;
 }
 
+/* ---------- 4.  PRODUCTS SECTION ---------- */
 section {
   padding: 50px 20px;
   text-align: center;
 }
-
 #products {
   background: #fff;
 }
-
 .search-bar input {
   padding: 10px 15px;
   width: 80%;
@@ -78,86 +82,195 @@ section {
   border: 1px solid #ccc;
 }
 
-.filter-buttons {
-  margin-bottom: 20px;
+/* ---------- 5.  FILTER BUTTONS ---------- */
+.filter-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  margin: 1rem 0;
 }
-
+.filter-buttons {
+  display: flex;
+  gap: .6rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding: .2rem 0;
+}
+.filter-buttons::-webkit-scrollbar {
+  display: none;
+}
 .filter-buttons button {
-  background: #00b09b;
-  color: white;
+  white-space: nowrap;
+  flex: 0 0 auto;
+  padding: .6rem 1.1rem;
   border: none;
-  padding: 8px 15px;
-  margin: 5px;
+  background: #111;
+  color: #fff;
   border-radius: 20px;
   cursor: pointer;
-  font-weight: bold;
+  font-size: .95rem;
 }
-
 .filter-buttons button:hover {
-  background: #008f7a;
+  background: #333;
+}
+.scroll-btn {
+  display: none;
+}
+@media (max-width: 600px) {
+  .scroll-btn {
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, .55);
+    color: #fff;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    z-index: 3;
+  }
+  .scroll-btn.left {
+    left: 4px;
+  }
+  .scroll-btn.right {
+    right: 4px;
+  }
 }
 
+/* ---------- 6.  PRODUCT GRID – FLUID ---------- */
 .product-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  padding: 0 clamp(.5rem, 3vw, 2rem);
   justify-content: center;
-  gap: 25px;
-  margin-top: 30px;
 }
-
 .product-card {
-  background: #f9f9f9;
-  border-radius: 15px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  width: 220px;
-  padding: 15px;
-  transition: transform 0.3s;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform .3s;
 }
-
 .product-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
 }
-
 .product-card img {
   width: 100%;
-  border-radius: 10px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #fafafa;
 }
-
+.product-card h3 {
+  font-size: clamp(.9rem, 1.8vw, 1.05rem);
+  margin: .6rem 0 .2rem;
+  flex-grow: 1;
+}
+.discount {
+  color: #e63946;
+  font-weight: 700;
+  margin: .2rem 0;
+}
 .buy-btn {
-  display: inline-block;
+  align-self: start;
   background: #00b09b;
-  color: white;
-  padding: 8px 15px;
+  color: #fff;
+  padding: .5rem 1.1rem;
   border-radius: 20px;
   text-decoration: none;
-  margin-top: 10px;
+  font-size: .85rem;
+  margin-top: auto;
+  transition: background .25s;
 }
-
 .buy-btn:hover {
   background: #008f7a;
 }
 
-footer {
-  background: #111;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  font-size: 14px;
+/* ---------- 7.  IMAGE SLIDER – NO CROP + CIRCLES ---------- */
+.slider {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
+  aspect-ratio: 16 / 9;
+}
+.slides {
+  display: flex;
+  height: 100%;
+  transition: transform .6s ease;
+}
+.slides img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, .45);
+  color: #fff;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  cursor: pointer;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.prev {
+  left: 12px;
+}
+.next {
+  right: 12px;
+}
+.dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 6;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .6);
+  cursor: pointer;
+  transition: background .25s;
+}
+.dot.active {
+  background: #fff;
 }
 
+/* ---------- 8.  CONTACT & FOOTER ---------- */
 #contact {
   background-color: #f9f9f9;
   padding: 40px 20px;
   text-align: center;
   font-family: 'Segoe UI', sans-serif;
 }
-
 #contact h2 {
   margin-bottom: 30px;
   font-size: 28px;
   color: #333;
 }
-
 .contact-item {
   display: flex;
   align-items: center;
@@ -166,93 +279,22 @@ footer {
   gap: 12px;
   font-size: 16px;
 }
-
 .contact-item img.icon {
   width: 24px;
   height: 24px;
 }
-
 .contact-item a {
   color: #075e54;
   text-decoration: none;
   font-weight: 500;
 }
-
 .contact-item a:hover {
   text-decoration: underline;
 }
-
-/* ---------- FILTER SLIDER ---------- */
-.filter-wrapper{
-  position:relative;
-  display:flex;
-  align-items:center;
-  max-width:100%;
-  margin:1rem 0;
-}
-.filter-buttons{
-  display:flex;
-  gap:.6rem;
-  overflow-x:auto;
-  scroll-behavior:smooth;
-  -webkit-overflow-scrolling:touch;   /* smooth iOS scroll */
-  padding:.2rem 0;
-
-}
-.filter-buttons::-webkit-scrollbar{display:none;} /* hide ugly bar */
-.filter-buttons button{
-  white-space:nowrap;
-  flex:0 0 auto;
-  padding:.6rem 1.1rem;
-  border:none;
-  background:#111;
-  color:#fff;
-  border-radius:20px;
-  cursor:pointer;
-  font-size:.95rem;
-}
-.filter-buttons button:hover{background:#333;}
-
-.scroll-btn{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:rgba(0,0,0,.6);
-  color:#fff;
-  border:none;
-  border-radius:50%;
-  width:32px;
-  height:32px;
-  font-size:1.2rem;
-  cursor:pointer;
-  z-index:2;
-  display:none;
-}
-.scroll-btn.left{left:4px;}
-.scroll-btn.right{right:4px;}
-
-@media(max-width:600px){
-  .scroll-btn{display:block;}
-}
-
-.scroll-btn{
-  opacity:0;
-  visibility:hidden;
-  transition:opacity .25s ease, visibility .25s ease;
-}
-@media(max-width:600px){
-  .scroll-btn{
-    opacity:1;
-    visibility:visible;
-  }
-}
-
-.scroll-btn:active{
-  transform:translateY(-50%) scale(.85);
-  transition:transform .1s ease;
-}
-
-.discount {
-  color: red;
-  font-weight: bold;
+footer {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
 }

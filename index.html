@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sekho Deals</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -29,6 +29,20 @@
       <input type="text" id="searchInput" placeholder="Search products...">
     </div>
 
+    <!-- IMAGE SLIDER -->
+    <div class="slider">
+      <div class="slides">
+        <img src="Picture/bluei Earpiece.JPG" alt="Slide 1">
+        <img src="Picture/Mi cable.JPG" alt="Slide 2">
+        <img src="Picture/USB to Lightning.JPG" alt="Slide 3">
+        <img src="Picture/Oneplus Cable.JPG" alt="Slide 4">
+        <img src="Picture/Iphone 11 Battery.JPG" alt="Slide 5">
+      </div>
+      <button class="prev" aria-label="Previous slide">&#10094;</button>
+      <button class="next" aria-label="Next slide">&#10095;</button>
+      <div class="dots"></div>
+    </div>
+
     <!-- FILTER SLIDER -->
 <div class="filter-wrapper">
   <button class="scroll-btn left" aria-label="Scroll left">‹</button>
@@ -41,6 +55,7 @@
     <button onclick="filterProducts('speaker')">Speakers</button>
     <button onclick="filterProducts('adapter')">Adapters</button>
     <button onclick="filterProducts('powerbank')">Power Banks</button>
+    <button onclick="filterProducts('battery')">Battery</button>
     <button onclick="filterProducts('other')">Others Accessories</button>
   </div>
 
@@ -55,7 +70,7 @@
         <h3>Mi Earpiece</h3>
         <p class="discount">15% OFF</p>
         <p>₹499.00</p>
-        <ahref="https://wa.me/919862494804?text=I want to buy Mi earpiece" class="buy-btn" target="_blank">Buy Now</a>
+        <a href="https://wa.me/919862494804?text=I want to buy Mi earpiece" class="buy-btn" target="_blank">Buy Now</a>
       </div>
 
       <div class="product-card" data-category="charger">
@@ -99,14 +114,21 @@
         <a href="https://wa.me/919862494804?text=I  want to buy 120W Oppo Charger" class="buy-btn" target="_blank">Buy Now</a>
       </div>
 
-
+      <div class="product-card" data-category="battery">
+        <img src="Picture/" alt="Battery">
+        <h3>Original Battery</h3>
+        <p>Android Battery</p>  
+        <p class="discount">45% OFF</p>
+        <p>₹1199.00 and above</p>
+        <a href="https://wa.me/919862494804?text=I  want to buy Android Battery" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
       
       <div class="product-card" data-category="charger">
         <img src="Picture/85W Realme.JPG" alt="85W Realme Charger">
         <h3>85W Realme Charger</h3>
         <p class="discount">60% OFF</p>
         <p>₹599.00</p>
-        <ahref="https://wa.me/919862494804?text=I want to buy 85W Realme Charger" class="buy-btn" target="_blank">Buy Now</a>
+        <a href="https://wa.me/919862494804?text=I want to buy 85W Realme Charger" class="buy-btn" target="_blank">Buy Now</a>
       </div>
 
        <div class="product-card" data-category="speaker">
@@ -121,7 +143,7 @@
         <h3>25W Samsung Adapter</h3>
         <p class="discount">25% OFF</p>
         <p>₹1199.00</p>
-        <ahref="https://wa.me/919862494804?text=I want to buy 25W Samsung Adapter" class="buy-btn" target="_blank">Buy Now</a>
+        <a href="https://wa.me/919862494804?text=I want to buy 25W Samsung Adapter" class="buy-btn" target="_blank">Buy Now</a>
       </div>
 
       <div class="product-card" data-category="charger">
@@ -233,7 +255,7 @@
         <h3>85W Vivo Charger</h3>
         <p class="discount">60% OFF</p>
         <p>₹599.00</p>
-        <ahref="https://wa.me/919862494804?text=I want to buy 85W Vivo Charger" class="buy-btn" target="_blank">Buy Now</a>
+        <a href="https://wa.me/919862494804?text=I want to buy 85W Vivo Charger" class="buy-btn" target="_blank">Buy Now</a>
       </div>
 
       <div class="product-card" data-category="cable">
@@ -275,7 +297,7 @@
 
   <div class="contact-item">
     <img src="Picture/Instagram-Logo-PNG.png" alt="Instagram" class="icon">
-    <p>Instagram: <a href="https://instagram.com/sekho_deals" target="_blank">sekho_deals</a></p>
+    <p>Instagram: <a href="https://instagram.com/sekho_deals" target="_blank">@sekho_deals</a></p>
   </div>
 
   <div class="contact-item">
