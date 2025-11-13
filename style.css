@@ -1,30 +1,24 @@
-/* ==========================================================
-   SEKHO DEALS – MONOCHROME AESTHETIC
-   Black background / White text / Red accent only
-   ========================================================== */
-
-/* 1. ROOT RESET + BASE
----------------------------------------------------------- */
+/* ---------- 1. RESET & BASE ---------- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
+
 body {
   font-family: "Poppins", sans-serif;
-  background: #000;
-  color: #fff;
+  background: #f7f8fa;
+  color: #333;
   line-height: 1.5;
 }
 
-/* 2. HEADER
----------------------------------------------------------- */
+/* ---------- 2. HEADER ---------- */
 header {
   position: sticky;
   top: 0;
   z-index: 200;
-  background: #000;
+  background: #111;
   color: #fff;
   display: flex;
   justify-content: space-between;
@@ -32,209 +26,313 @@ header {
   padding: 0.8rem clamp(1rem, 3vw, 2rem);
   flex-wrap: wrap;
   gap: 0.5rem 1rem;
-  border-bottom: 1px solid #222;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
 }
+
 header h1 {
   font-size: clamp(1.2rem, 2.5vw, 1.8rem);
   letter-spacing: 0.5px;
+  color: #ffffff;
 }
+
 nav {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 0.6rem;
 }
+
 nav a {
   color: #fff;
   text-decoration: none;
   font-weight: 600;
-  transition: color 0.3s;
-}
-nav a:hover {
-  color: #ff003c;
-}
-nav a.share-btn {
-  border: 1px solid #ff003c;
-  border-radius: 25px;
-  padding: 0.4rem 1rem;
-}
-nav a.share-btn:hover {
-  background: #ff003c;
-  color: #000;
+  transition: color 0.3s, transform 0.2s;
 }
 
-/* 3. HERO
----------------------------------------------------------- */
+/* Hover effect for links */
+nav a:hover {
+  color: #df0808;
+  transform: translateY(-2px);
+}
+
+/* Special styling for the Share button */
+nav a.share-btn {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #ffffff;
+  border-radius: 25px;
+  padding: 0.4rem 1rem;
+  transition: all 0.3s ease;
+}
+
+/* Glowing blue effect on hover or tap */
+nav a.share-btn:hover,
+nav a.share-btn:active {
+  background: #535353;
+  color: #fff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+  transform: scale(1.05);
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+  }
+  nav {
+    justify-content: center;
+  }
+}
+
+/* ---------- 3. HERO SECTION ---------- */
 .hero {
-  background: #000;
+  background: linear-gradient(90deg, #0a0a0a, #222222);
   color: #fff;
   text-align: center;
   padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 3rem);
-  border: 1px solid #222;
-  border-top: none;
   border-radius: 0 0 40px 40px;
 }
+
 .hero h2 {
   font-size: clamp(1.8rem, 5vw, 3rem);
   margin-bottom: 1rem;
+  font-weight: 700;
 }
+
 .hero p {
   font-size: 1.1rem;
-  opacity: 0.8;
+  opacity: 0.9;
 }
+
 .hero .btn {
   display: inline-block;
   margin-top: 1.5rem;
   background: #fff;
-  color: #000;
+  color: #070707;
   padding: 0.8rem 2rem;
   border-radius: 30px;
   font-weight: 600;
   text-decoration: none;
   transition: 0.3s;
 }
+
 .hero .btn:hover {
-  background: #ff003c;
+  background: #0a0a0a;
   color: #fff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
 }
 
-/* 4. PRODUCTS SECTION
----------------------------------------------------------- */
+/* ---------- 4. PRODUCTS SECTION ---------- */
 section {
   padding: 60px 20px;
   text-align: center;
 }
+
 #products {
-  background: #000;
+  background: #fff;
   border-radius: 30px 30px 0 0;
   margin-top: 2rem;
 }
+
 #products h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
+  color: #000000;
 }
+
 .search-bar input {
   padding: 10px 15px;
   width: 80%;
   max-width: 400px;
   margin: 20px auto;
   border-radius: 25px;
-  border: 1px solid #333;
-  background: #111;
-  color: #fff;
+  border: 1px solid #ccc;
   outline: none;
-}
-.search-bar input:focus {
-  border-color: #ff003c;
+  transition: 0.3s;
 }
 
-/* 5. FILTER BUTTONS
----------------------------------------------------------- */
+.search-bar input:focus {
+  border-color: #222222;
+  box-shadow: 0 0 8px rgba(12, 12, 12, 0.3);
+}
+
+/* ---------- 5. FILTER BUTTONS ---------- */
 .filter-wrapper {
   position: relative;
   width: 100%;
-  overflow: hidden;
-  -webkit-overflow-scrolling: touch;
+  overflow: hidden;               
+  -webkit-overflow-scrolling: touch; /* momentum scroll iOS */
 }
+
 .filter-buttons {
   display: flex;
-  gap: 12px;
-  padding: 10px 6px 22px;
+  gap: 10px;
+  padding: 8px 4px 18px;          /* extra bottom pad = drag area */
   overflow-x: auto;
   scroll-behavior: smooth;
   cursor: grab;
-  user-select: none;
-  scrollbar-width: none;
+  user-select: none;              
 }
-.filter-buttons::-webkit-scrollbar {
-  display: none;
+.filter-buttons::-webkit-scrollbar { display: none; }
+.filter-buttons { scrollbar-width: none; }
+.filter-buttons.grabbing { cursor: grabbing; }
+
+/* ----- button look ----- */
+.filter-wrapper{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  -webkit-overflow-scrolling:touch;
 }
-.filter-buttons.grabbing {
-  cursor: grabbing;
+.filter-buttons{
+  display:flex;
+  gap:12px;
+  padding:10px 6px 22px;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+  cursor:grab;
+  user-select:none;
+  scrollbar-width:none;
 }
-.filter-buttons button {
-  flex: 0 0 auto;
-  padding: 0.65rem 1.4rem;
-  border: none;
-  border-radius: 30px;
-  background: #111;
-  color: #fff;
-  font-weight: 600;
-  white-space: nowrap;
-  transition: transform 0.25s, box-shadow 0.25s;
-}
-.filter-buttons button.active {
-  transform: scale(1.08);
-  box-shadow: 0 0 8px 2px #ff003c, 0 0 20px 4px #ff003c,
-    0 0 35px 6px rgba(255, 0, 60, 0.6);
-}
-.filter-buttons button:hover {
-  background: #ff003c;
-  color: #000;
+.filter-buttons::-webkit-scrollbar{display:none;}
+.filter-buttons.grabbing{cursor:grabbing}
+
+.filter-buttons button{
+  flex:0 0 auto;
+  padding:.65rem 1.4rem;
+  border:none;
+  border-radius:30px;
+  background:#111;
+  color:#fff;
+  font-weight:600;
+  white-space:nowrap;
+  transition:transform .25s,box-shadow .25s;
 }
 
-/* 6. PRODUCT GRID
----------------------------------------------------------- */
+/* Soft blue glow + pulse animation */
+.filter-buttons button:focus,
+.filter-buttons button:hover,
+.filter-buttons button.active,
+.filter-buttons button:active {
+  background: #070707;
+  color: #fff;
+  box-shadow: 
+    0 0 10px rgba(8, 8, 8, 0.6),
+    0 0 20px rgba(13, 13, 14, 0.4);
+  transform: scale(1.05);
+  animation: pulseGlow 1.5s ease-in-out infinite alternate;
+}
+
+/* Pulse animation keyframes */
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 
+      0 0 10px rgba(193, 188, 197, 0.6),
+      0 0 20px rgba(46, 45, 45, 0.4);
+  }
+  100% {
+    box-shadow: 
+      0 0 20px rgba(0, 0, 0, 0.8),
+      0 0 35px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* ---------- 6. PRODUCT GRID ---------- */
+.product-card {
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 
+    0 2px 4px rgba(0,0,0,.06),
+    0 6px 12px rgba(0,0,0,.08);  /* far shadow */
+  transition: transform .25s cubic-bezier(.25,.8,.25,1),
+              box-shadow .25s, 
+              box-shadow 0.3s ease-in-out;
+}
+
+/* Blue glowing effect on hover or touch */
+.product-card:focus,
+.product-card:hover,
+.product-card:active {
+  transform: translateY(-6px);
+  box-shadow: 
+    0 4px 8px rgba(0,0,0,.08),
+    0 12px 24px rgba(0,0,0,.12),
+    0 0 20px 5px rgba(0, 0, 0, 0.6); 
+}
+
+/* subtle inner highlight for extra “bevel” */
+.product-card::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: 11px;
+  background: linear-gradient(145deg, rgba(255,255,255,.9), transparent 40%);
+  pointer-events: none;
+}
+
+/* ---------- LAYOUT ---------- */
 .product-container {
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr));
-  padding: 0 clamp(0.5rem, 3vw, 2rem);
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(170px, 100%), 1fr)   
+  );
+  padding: 0 clamp(.5rem, 3vw, 2rem);
   justify-content: center;
 }
+
 .product-card {
-  position: relative;
-  background: #111;
-  border-radius: 12px;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
-  transition: transform 0.25s, box-shadow 0.25s;
+  padding: 1rem;
 }
-.product-card:hover,
-.product-card:focus,
-.product-card:active {
-  transform: translateY(-6px);
-  box-shadow: 0 0 20px 5px rgba(255, 0, 60, 0.6);
-}
+
 .product-card img {
   width: 160px;
   aspect-ratio: 1/1;
   object-fit: contain;
   margin: 0 auto;
   border-radius: 8px;
-  background: #000;
+  background: #fafafa;
 }
+
 .product-card h3 {
   flex-grow: 1;
-  margin: 0.6rem 0 0.2rem;
-  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+  margin: .6rem 0 .2rem;
+  font-size: clamp(.9rem, 1.8vw, 1.05rem);
 }
+
+/* ---------- COSMETICS / COLOURS ---------- */
 .discount {
-  color: #ff003c;
+  color: #e63946;
   font-weight: 700;
-  margin: 0.2rem 0;
+  margin: .2rem 0;
 }
+
 .buy-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-top: auto;
-  padding: 0.5rem 1.1rem;
+  padding: .5rem 1.1rem;
   border-radius: 20px;
-  background: #fff;
-  color: #000;
-  font-size: 0.85rem;
-  text-decoration: none;
-  transition: 0.25s;
-}
-.buy-btn:hover {
-  background: #ff003c;
+  background: linear-gradient(135deg, #474646 0%, #000000 100%);
   color: #fff;
+  font-size: .85rem;
+  text-decoration: none;
+  transition: background .25s, transform .15s;
 }
 
-/* 7. IMAGE SLIDER
----------------------------------------------------------- */
+.buy-btn:hover {
+  background: linear-gradient(135deg, #747272 0%, #2f3030 100%);
+  transform: scale(1.05);
+}
+
+/* ---------- 7. IMAGE SLIDER ---------- */
 .slider {
   position: relative;
   width: 100%;
@@ -243,27 +341,28 @@ section {
   overflow: hidden;
   border-radius: 20px;
   aspect-ratio: 16 / 9;
-  border: 1px solid #222;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
+
 .slides {
   display: flex;
   height: 100%;
   transition: transform 1s ease;
 }
+
 .slides img {
   flex: 0 0 100%;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(100%) contrast(1.05);
 }
-.prev,
-.next {
+
+.prev, .next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.9);
-  color: #000;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
   border: none;
   width: 44px;
   height: 44px;
@@ -276,17 +375,14 @@ section {
   justify-content: center;
   transition: 0.3s;
 }
-.prev:hover,
-.next:hover {
-  background: #ff003c;
-  color: #fff;
+
+.prev:hover, .next:hover {
+  background: rgba(0, 0, 0, 0.6);
 }
-.prev {
-  left: 15px;
-}
-.next {
-  right: 15px;
-}
+
+.prev { left: 15px; }
+.next { right: 15px; }
+
 .dots {
   position: absolute;
   bottom: 15px;
@@ -296,30 +392,34 @@ section {
   gap: 10px;
   z-index: 6;
 }
+
 .dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   transition: 0.3s;
 }
+
 .dot.active {
-  background: #ff003c;
+  background: #fff;
   transform: scale(1.2);
 }
 
-/* 8. CONTACT & FOOTER
----------------------------------------------------------- */
+/* ---------- 8. CONTACT & FOOTER ---------- */
 #contact {
-  background: #000;
+  background-color: #f9f9f9;
   padding: 40px 20px;
   text-align: center;
 }
+
 #contact h2 {
   margin-bottom: 30px;
   font-size: 28px;
+  color: #000000;
 }
+
 .contact-item {
   display: flex;
   align-items: center;
@@ -328,24 +428,26 @@ section {
   gap: 12px;
   font-size: 16px;
 }
+
 .contact-item img.icon {
   width: 24px;
   height: 24px;
-  filter: invert(1);
 }
+
 .contact-item a {
-  color: #ff003c;
+  color: #6939ec;
   text-decoration: none;
   font-weight: 500;
 }
+
 .contact-item a:hover {
   text-decoration: underline;
 }
+
 footer {
-  background: #000;
-  color: #fff;
+  background: #111;
+  color: white;
   text-align: center;
   padding: 15px;
   font-size: 14px;
-  border-top: 1px solid #222;
 }
