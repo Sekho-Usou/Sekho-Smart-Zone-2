@@ -173,43 +173,49 @@ section {
   overflow-x: auto;
   scroll-behavior: smooth;
   cursor: grab;
-  user-select: none;              /* stop text selection */
+  user-select: none;              
 }
 .filter-buttons::-webkit-scrollbar { display: none; }
 .filter-buttons { scrollbar-width: none; }
 .filter-buttons.grabbing { cursor: grabbing; }
 
 /* ----- button look (unchanged) ----- */
+.filter-wrapper{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  -webkit-overflow-scrolling:touch;
+}
 .filter-buttons{
   display:flex;
   gap:12px;
-  padding:10px 6px 20px;         /* extra bottom pad = drag area */
+  padding:10px 6px 22px;
   overflow-x:auto;
   scroll-behavior:smooth;
   cursor:grab;
   user-select:none;
-  scrollbar-width:none;          /* Firefox */
+  scrollbar-width:none;
 }
-.filter-buttons::-webkit-scrollbar{display:none;} /* Chrome/Safari */
-
+.filter-buttons::-webkit-scrollbar{display:none;}
 .filter-buttons.grabbing{cursor:grabbing}
-.filter-buttons button.active,
-.filter-buttons button:active {
-  background: #007bff;
-  color: #fff;
-  box-shadow: 0 0 10px rgba(0,123,255,.6);
-}
+
 .filter-buttons button{
   flex:0 0 auto;
   padding:.65rem 1.4rem;
   border:none;
   border-radius:30px;
-  background:#1a1a1a;
+  background:#111;
   color:#fff;
-  font-size:.95rem;
   font-weight:600;
   white-space:nowrap;
-  transition:transform .25s, box-shadow .25s;
+  transition:transform .25s,box-shadow .25s;
+}
+.filter-buttons button.active{
+  transform:scale(1.08);
+  box-shadow:
+    0 0 8px 2px #ff003c,
+    0 0 20px 4px #ff003c,
+    0 0 35px 6px rgba(255,0,60,.6);
 }
 
 /* Soft blue glow + pulse animation */
