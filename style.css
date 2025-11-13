@@ -160,38 +160,43 @@ section {
 
 /* ---------- 5. FILTER BUTTONS ---------- */
 .filter-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 1.5rem 0;
-  flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+  overflow: hidden;               /* hide scrollbar */
+  -webkit-overflow-scrolling: touch; /* momentum scroll iOS */
 }
 
 .filter-buttons {
   display: flex;
   gap: 10px;
+  padding: 8px 4px 18px;          /* extra bottom pad = drag area */
   overflow-x: auto;
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  padding: 0.5rem 0;
+  cursor: grab;
+  user-select: none;              /* stop text selection */
 }
+.filter-buttons::-webkit-scrollbar { display: none; }
+.filter-buttons { scrollbar-width: none; }
+.filter-buttons.grabbing { cursor: grabbing; }
 
-.filter-buttons::-webkit-scrollbar {
-  display: none;
-}
-
+/* ----- button look (unchanged) ----- */
 .filter-buttons button {
-  white-space: nowrap;
   flex: 0 0 auto;
-  padding: 0.6rem 1.3rem;
+  padding: .6rem 1.3rem;
   border: none;
   background: #eee;
   color: #111;
   border-radius: 25px;
-  cursor: pointer;
-  font-size: 0.95rem;
+  font-size: .95rem;
   font-weight: 500;
-  transition: 0.3s ease;
+  white-space: nowrap;
+  transition: .3s;
+}
+.filter-buttons button.active,
+.filter-buttons button:active {
+  background: #007bff;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0,123,255,.6);
 }
 
 /* Soft blue glow + pulse animation */
