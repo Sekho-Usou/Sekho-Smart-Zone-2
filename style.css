@@ -195,6 +195,7 @@ section {
 }
 
 /* Soft blue glow + pulse animation */
+.filter-buttons button:focus,
 .filter-buttons button:hover,
 .filter-buttons button.active,
 .filter-buttons button:active {
@@ -235,6 +236,7 @@ section {
 }
 
 /* Blue glowing effect on hover or touch */
+.product-card:focus,
 .product-card:hover,
 .product-card:active {
   transform: translateY(-6px);
@@ -258,7 +260,10 @@ section {
 .product-container {
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(170px, 100%), 1fr)   
+  );
   padding: 0 clamp(.5rem, 3vw, 2rem);
   justify-content: center;
 }
