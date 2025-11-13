@@ -83,6 +83,37 @@ document.addEventListener('DOMContentLoaded', () => {
     if (Math.abs(diff) > 50) moveSlide(diff > 0 ? -1 : 1);
   });
 
+  const fb = document.querySelector('.filter-buttons');
+if (fb) {
+  let isDown = false, startX, scrollLeft;
+
+  const dragStart = e => {
+    isDown = true;
+    fb.classList.add('grabbing');
+    startX = (e.pageX || e.touches[0].pageX) - fb.offsetLeft;
+    scrollLeft = fb.scrollLeft;
+  };
+  const dragMove = e => {
+    if (!isDown) return;
+    const x = (e.pageX || e.touches[0].pageX) - fb.offsetLeft;
+    const walk = (x - startX) * 1.4;   // drag speed
+    fb.scrollLeft = scrollLeft - walk;
+  };
+  const dragEnd = () => {
+    isDown = false;
+    fb.classList.remove('grabbing');
+  };
+
+  /* mouse */
+  fb.addEventListener('mousedown', dragStart);
+  window.addEventListener('mousemove', dragMove);
+  window.addEventListener('mouseup', dragEnd);
+
+  /* touch */
+  fb.addEventListener('touchstart', dragStart, {passive:true});
+  fb.addEventListener('touchmove', dragMove, {passive:true});
+  fb.addEventListener('touchend', dragEnd);
+}
   // Initialize
   showSlide(0);
   startAuto();
