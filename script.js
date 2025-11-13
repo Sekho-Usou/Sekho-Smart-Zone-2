@@ -75,44 +75,49 @@ document.addEventListener('DOMContentLoaded', () => {
   slider.addEventListener('mouseenter', stopAuto);
   slider.addEventListener('mouseleave', startAuto);
 
-  // Swipe support for touch devices
-  let touchStartX = 0;
-  slider.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
-  slider.addEventListener('touchend', e => {
-    const diff = e.changedTouches[0].screenX - touchStartX;
-    if (Math.abs(diff) > 50) moveSlide(diff > 0 ? -1 : 1);
+  /* =====  CLONE OF CHEFSALANGYANGER STRIP  ===== */
+const strip = document.querySelector('.filter-buttons');
+if (strip) {
+  let down = false, startX, scrollLeft;
+
+  /* ---- touch ---- */
+  strip.addEventListener('touchstart', e => {
+    down = true;
+    strip.classList.add('grabbing');
+    startX = e.touches[0].pageX - strip.offsetLeft;
+    scrollLeft = strip.scrollLeft;
+  }, {passive:true});
+
+  strip.addEventListener('touchmove', e => {
+    if (!down) return;
+    const x = e.touches[0].pageX - strip.offsetLeft;
+    strip.scrollLeft = scrollLeft - (x - startX) * 1.6; /* speed */
+  }, {passive:true});
+
+  strip.addEventListener('touchend', () => {
+    down = false;
+    strip.classList.remove('grabbing');
   });
 
-  const fb = document.querySelector('.filter-buttons');
-if (fb) {
-  let isDown = false, startX, scrollLeft;
+  /* ---- mouse (desktop) ---- */
+  strip.addEventListener('mousedown', e => {
+    down = true; startX = e.pageX - strip.offsetLeft; scrollLeft = strip.scrollLeft;
+    strip.classList.add('grabbing');
+  });
+  window.addEventListener('mousemove', e => {
+    if (!down) return;
+    strip.scrollLeft = scrollLeft - (e.pageX - strip.offsetLeft - startX) * 1.6;
+  });
+  window.addEventListener('mouseup', () => {
+    down = false; strip.classList.remove('grabbing');
+  });
 
-  const dragStart = e => {
-    isDown = true;
-    fb.classList.add('grabbing');
-    startX = (e.pageX || e.touches[0].pageX) - fb.offsetLeft;
-    scrollLeft = fb.scrollLeft;
-  };
-  const dragMove = e => {
-    if (!isDown) return;
-    const x = (e.pageX || e.touches[0].pageX) - fb.offsetLeft;
-    const walk = (x - startX) * 1.4;   // drag speed
-    fb.scrollLeft = scrollLeft - walk;
-  };
-  const dragEnd = () => {
-    isDown = false;
-    fb.classList.remove('grabbing');
-  };
-
-  /* mouse */
-  fb.addEventListener('mousedown', dragStart);
-  window.addEventListener('mousemove', dragMove);
-  window.addEventListener('mouseup', dragEnd);
-
-  /* touch */
-  fb.addEventListener('touchstart', dragStart, {passive:true});
-  fb.addEventListener('touchmove', dragMove, {passive:true});
-  fb.addEventListener('touchend', dragEnd);
+  /* ---- keep active button glowing ---- */
+  strip.addEventListener('click', e => {
+    if (e.target.tagName !== 'BUTTON') return;
+    strip.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+  });
 }
   // Initialize
   showSlide(0);

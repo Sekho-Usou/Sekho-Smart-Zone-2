@@ -180,23 +180,36 @@ section {
 .filter-buttons.grabbing { cursor: grabbing; }
 
 /* ----- button look (unchanged) ----- */
-.filter-buttons button {
-  flex: 0 0 auto;
-  padding: .6rem 1.3rem;
-  border: none;
-  background: #eee;
-  color: #111;
-  border-radius: 25px;
-  font-size: .95rem;
-  font-weight: 500;
-  white-space: nowrap;
-  transition: .3s;
+.filter-buttons{
+  display:flex;
+  gap:12px;
+  padding:10px 6px 20px;         /* extra bottom pad = drag area */
+  overflow-x:auto;
+  scroll-behavior:smooth;
+  cursor:grab;
+  user-select:none;
+  scrollbar-width:none;          /* Firefox */
 }
+.filter-buttons::-webkit-scrollbar{display:none;} /* Chrome/Safari */
+
+.filter-buttons.grabbing{cursor:grabbing}
 .filter-buttons button.active,
 .filter-buttons button:active {
   background: #007bff;
   color: #fff;
   box-shadow: 0 0 10px rgba(0,123,255,.6);
+}
+.filter-buttons button{
+  flex:0 0 auto;
+  padding:.65rem 1.4rem;
+  border:none;
+  border-radius:30px;
+  background:#1a1a1a;
+  color:#fff;
+  font-size:.95rem;
+  font-weight:600;
+  white-space:nowrap;
+  transition:transform .25s, box-shadow .25s;
 }
 
 /* Soft blue glow + pulse animation */
