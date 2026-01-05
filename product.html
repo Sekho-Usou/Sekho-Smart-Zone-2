@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product Detail – Sekho Smart Zone</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="Picture/sz logo.png"> 
+  <style>
+    /* ----- detail page quick extras ----- */
+    .detail-wrap{
+      display:flex;flex-wrap:wrap;gap:2rem;padding:2rem;max-width:1100px;margin:auto;
+    }
+    .detail-img{flex:1 1 300px;text-align:center}
+    .detail-img img{width:100%;max-width:380px;border-radius:12px}
+    .detail-info{flex:1 1 280px}
+    .detail-info h2{font-size:1.8rem;margin-bottom:.5rem}
+    .detail-price{font-size:1.5rem;color:#e63946;margin:.5rem 0}
+    .detail-discount{color:#28a745;font-weight:700}
+    .buy-big{
+      display:inline-block;margin-top:1rem;background:#111;color:#fff;
+      padding:.8rem 2.2rem;border-radius:30px;text-decoration:none;font-weight:600;
+    }
+    /* ----- mini slider ----- */
+    .mini-slider{
+      position:relative;overflow:hidden;margin-top:2rem;
+    }
+    .mini-slider h3{margin-left:1rem}
+    .mini-wrapper{
+      display:flex;gap:1rem;padding:0 1rem 1rem;overflow-x:auto;scroll-behavior:smooth;
+      -webkit-overflow-scrolling: touch;scrollbar-width:none;
+    }
+    .mini-wrapper::-webkit-scrollbar{display:none}
+    .mini-card{
+      flex:0 0 140px;background:#fff;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.1);
+      text-align:center;padding:.7rem;cursor:pointer;
+    }
+    .mini-card img{width:100%;aspect-ratio:1/1;object-fit:contain}
+    .mini-card p{margin:.3rem 0;font-size:.85rem;font-weight:600}
+  </style>
+</head>
+<body>
+<header>
+  <h1><img src="Picture/sz logo.png" style="height:35px;vertical-align:middle;margin-right:8px;filter:brightness(0) invert(1)"> Sekho Smart Zone</h1>
+  <nav>
+    <a href="index.html#home">Home</a>
+    <a href="index.html#products">Products</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="index.html#about">About Us</a>
+    <a href="https://wa.me/?text=Check%20out%20Sekho%20Smart%20Zone%20!%0Ahttps://sekhosmartzone.netlify.app" target="_blank" rel="noopener" class="share-btn">Share our store</a>
+  </nav>
+</header>
+
+<section class="detail-wrap">
+  <div class="detail-img">
+    <img id="detailImg" src="" alt="">
+  </div>
+  <div class="detail-info">
+    <h2 id="detailName"></h2>
+    <p id="detailDisc" class="detail-discount"></p>
+    <p class="detail-price" id="detailPrice"></p>
+    <a id="detailBuy" class="buy-big" href="" target="_blank">Buy on WhatsApp</a>
+  </div>
+</section>
+
+<section class="mini-slider">
+  <h3>You may also like</h3>
+  <div class="mini-wrapper" id="miniWrapper"></div>
+</section>
+
+<footer>
+  <p>© 2025 Sekho Üsou Smart Zone | All Rights Reserved</p>
+  <p>𝒟𝑒𝓈𝒾𝑔𝓃 𝒶𝓃𝒹 𝒟𝑒𝓋𝑒𝓁𝑜𝓅𝑒𝒹 𝐵𝓎 𝒮𝑒𝓀𝒽𝑜 Ü𝓈𝑜𝓊</p>
+</footer>
+
+<script src="product.js"></script>
+</body>
+</html>

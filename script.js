@@ -73,6 +73,26 @@ document.addEventListener('DOMContentLoaded', () => {
     startAuto();
   }
 
+
+  /* ----------  MAKE CARD CLICKABLE  ---------- */
+document.querySelectorAll('.product-card').forEach(card => {
+  card.addEventListener('click', () => {
+     // read the data that are already in the HTML
+     const id = card.querySelector('h3').textContent.trim();   // unique name
+     const cat = card.dataset.category;
+     const img = card.querySelector('img').src;
+     const price = card.querySelector('p:not(.discount)').textContent.trim();
+     const disc = card.querySelector('.discount')?.textContent.trim() || '';
+     const url   = card.querySelector('.buy-btn').href;        // WhatsApp link
+
+     // pass everything as query-string
+     const params = new URLSearchParams({ id, cat, img, price, disc, url });
+     window.location = 'product.html?' + params.toString();
+  });
+});
+
+
+
   /* ----------  CHEF-STYLE DRAGGABLE FILTER STRIP  ---------- */
   const strip = document.querySelector('.filter-buttons');
   if (strip) {
