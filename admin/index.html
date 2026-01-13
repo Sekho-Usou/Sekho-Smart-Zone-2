@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Admin Login – Sekho Smart Zone</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="login-body">
+  <form id="loginForm" class="login-card">
+    <img src="Picture/sz logo.png" alt="Logo" class="login-logo">
+    <h2>Inventory Login</h2>
+    <input type="password" id="pw" placeholder="Password" required autocomplete="current-password">
+    <button type="submit">Sign in</button>
+    <p id="err" class="login-err"></p>
+  </form>
+
+  <script>
+    document.getElementById('loginForm').onsubmit = e => {
+      e.preventDefault();
+      if (document.getElementById('pw').value === 'sekho123') {
+        sessionStorage.setItem('sekhoAdmin', '1');
+        location.replace('admin.html');
+      } else {
+        document.getElementById('err').textContent = 'Wrong password';
+      }
+    };
+  </script>
+</body>
+</html>

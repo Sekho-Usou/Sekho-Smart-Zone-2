@@ -1,0 +1,221 @@
+/* ----------  LOGIN PAGE  ---------- */
+.login-body{
+  background:#f3f4f6;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+}
+.login-card{
+  background:#fff;
+  padding:2.5rem 2rem;
+  border-radius:12px;
+  box-shadow:0 8px 30px rgba(0,0,0,.08);
+  width:100%;
+  max-width:360px;
+  text-align:center;
+}
+.login-logo{
+  height:52px;
+  margin-bottom:1rem;
+  filter:brightness(0) invert(1) hue-rotate(180deg);
+}
+.login-card h2{
+  margin-bottom:1.5rem;
+  font-weight:700;
+}
+.login-card input{
+  width:100%;
+  padding:.7rem 1rem;
+  margin-bottom:1.2rem;
+  border:1px solid #ccc;
+  border-radius:8px;
+}
+.login-card button{
+  width:100%;
+  padding:.7rem;
+  border:none;
+  border-radius:8px;
+  background:#111;
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+  transition:background .2s;
+}
+.login-card button:hover{
+  background:#000;
+}
+.login-err{
+  color:#e63946;
+  margin-top:.75rem;
+  font-size:.9rem;
+}
+
+/* ----------  EXISTING ADMIN CSS (keep earlier rules)  ---------- */
+:root{
+  --bg:#f7f8fa;
+  --card:#fff;
+  --primary:#111;
+  --secondary:#666;
+  --danger:#e63946;
+  --green:#28a745;
+  --radius:8px;
+  --shadow:0 2px 6px rgba(0,0,0,.08);
+}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+}
+body{
+  background:var(--bg);
+  color:#222;
+  line-height:1.5;
+}
+header{
+  background:var(--primary);
+  color:#fff;
+  padding:1rem 2rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.wrapper{
+  display:grid;
+  grid-template-columns:420px 1fr;
+  gap:1.5rem;
+  padding:1.5rem 2rem;
+  max-width:1400px;
+  margin:auto;
+}
+@media(max-width:900px){
+  .wrapper{
+    grid-template-columns:1fr;
+  }
+}
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:1.5rem;
+}
+h2{
+  margin-bottom:1rem;
+  font-size:1.25rem;
+}
+label{
+  display:block;
+  margin-top:1rem;
+  font-weight:600;
+  font-size:.9rem;
+}
+input,select{
+  width:100%;
+  padding:.55rem .65rem;
+  margin-top:.25rem;
+  border:1px solid #ccc;
+  border-radius:var(--radius);
+}
+input:focus,select:focus{
+  outline:none;
+  border-color:var(--primary);
+}
+.actions{
+  margin-top:1.5rem;
+  display:flex;
+  gap:.75rem;
+}
+.btn{
+  padding:.55rem 1.3rem;
+  border:none;
+  border-radius:var(--radius);
+  font-weight:600;
+  cursor:pointer;
+  transition:.2s;
+}
+.btn.primary{
+  background:var(--primary);
+  color:#fff;
+}
+.btn.primary:hover{
+  background:#000;
+}
+.btn.secondary{
+  background:#eee;
+  color:var(--secondary);
+}
+.btn.secondary:hover{
+  background:#ddd;
+}
+.progress-bar{
+  margin-top:1rem;
+  height:6px;
+  background:#e5e5e5;
+  border-radius:3px;
+  overflow:hidden;
+  position:relative;
+}
+.progress-inner{
+  height:100%;
+  background:var(--primary);
+  width:0%;
+  transition:width .3s;
+}
+.progress-text{
+  position:absolute;
+  right:0;
+  top:-22px;
+  font-size:.75rem;
+}
+.msg{
+  margin-top:.75rem;
+  font-size:.85rem;
+  min-height:1.2rem;
+}
+.msg.success{
+  color:var(--green);
+}
+.msg.error{
+  color:var(--danger);
+}
+.search{
+  margin-bottom:1rem;
+}
+.table-wrapper{
+  overflow-x:auto;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.9rem;
+}
+th,td{
+  padding:.6rem .5rem;
+  border-bottom:1px solid #eaeaea;
+  text-align:left;
+}
+th{
+  background:#fafafa;
+  font-weight:700;
+}
+td img{
+  height:42px;
+  width:42px;
+  object-fit:cover;
+  border-radius:var(--radius);
+}
+td .btn{
+  padding:.35rem .7rem;
+  font-size:.8rem;
+}
+.stock-in{
+  color:var(--green);
+  font-weight:700;
+}
+.stock-out{
+  color:var(--danger);
+  font-weight:700;
+}
+
+
