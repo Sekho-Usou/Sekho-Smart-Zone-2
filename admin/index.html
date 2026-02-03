@@ -1,37 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Content Manager | Sekho Smart Zone</title>
-  
-  <!-- Netlify Identity Widget -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  
-  <!-- Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@3.10.0/dist/decap-cms.js"></script>
-  
-  <style>
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-  </style>
+  <title>Content Manager</title>
+  <link rel="stylesheet" href="https://unpkg.com/decap-cms@3.10.0/dist/decap-cms.css">
 </head>
 <body>
+  <!-- Root element for CMS -->
+  <div id="nc-root"></div>
+  
+  <!-- Load Identity first -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  
+  <!-- Load CMS -->
+  <script src="https://unpkg.com/decap-cms@3.10.0/dist/decap-cms.js"></script>
+  
   <script>
-    // Wait for CMS to be ready
-    window.addEventListener('load', function() {
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-      }
-    });
+    // Initialize identity
+    if (window.netlifyIdentity) {
+      netlifyIdentity.on('init', function(user) {
+        if (!user) {
+          netlifyIdentity.on('login', function() {
+            window.location.href = '/admin/';
+          });
+        }
+      });
+    }
   </script>
 </body>
 </html>

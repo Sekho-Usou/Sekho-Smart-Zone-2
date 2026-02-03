@@ -1,23 +1,21 @@
-backend:
-  name: git-gateway
-  branch: main
-
-media_folder: "assets/uploads"
-public_folder: "/assets/uploads"
-
 collections:
-  - name: "products"
-    label: "Products"
-    folder: "content/products"
-    create: true
-    slug: "{{slug}}"
-    extension: "json"
-    format: "json"
-    fields:
-      - { label: "Product Name", name: "title", widget: "string" }
-      - { label: "Slug", name: "slug", widget: "string" }
-      - { label: "Category", name: "category", widget: "select", options: ["earpiece", "cable", "charger", "speaker", "adapter", "powerbank", "battery", "other"] }
-      - { label: "Image", name: "image", widget: "image" }
-      - { label: "Price", name: "price", widget: "number" }
-      - { label: "Discount", name: "discount", widget: "string", required: false }
-      - { label: "Stock", name: "stock", widget: "select", options: ["in", "out"], default: "in" }
+  - name: "productdb"
+    label: "Product Database"
+    files:
+      - label: "All Products"
+        name: "products"
+        file: "products.json"
+        fields:
+          - label: "Products"
+            name: "products"
+            widget: "list"
+            allow_add: true
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Slug", name: "slug", widget: "string" }
+              - { label: "Category", name: "category", widget: "select", options: ["earpiece", "cable", "charger", "speaker", "adapter", "powerbank", "battery", "other"] }
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Price", name: "price", widget: "number" }
+              - { label: "Discount", name: "discount", widget: "string", required: false }
+              - { label: "Stock", name: "stock", widget: "select", options: ["in", "out"], default: "in" }
+              - { label: "WhatsApp Text", name: "whatsappText", widget: "string" }
