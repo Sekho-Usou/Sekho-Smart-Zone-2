@@ -37,6 +37,16 @@
     }
     .mini-card img{width:100%;aspect-ratio:1/1;object-fit:contain}
     .mini-card p{margin:.3rem 0;font-size:.85rem;font-weight:600}
+
+    .thumb-strip{
+  display:flex;gap:6px;margin-top:10px;
+}
+.thumb-strip img{
+  width:64px;height:64px;object-fit:cover;border:2px solid transparent;border-radius:6px;cursor:pointer;
+}
+.thumb-strip img.active{border-color:#111}
+
+
   </style>
 </head>
 <body>
@@ -52,9 +62,13 @@
 </header>
 
 <section class="detail-wrap">
+  <!-- LEFT: image + thumbnail strip -->
   <div class="detail-img">
-    <img id="detailImg" src="" alt="">
+    <img id="detailMain" src="" alt="">
+    <div id="thumbStrip" class="thumb-strip"></div>
   </div>
+
+  <!-- RIGHT: text info (unchanged) -->
   <div class="detail-info">
     <h2 id="detailName"></h2>
     <p id="detailDisc" class="detail-discount"></p>
@@ -76,3 +90,4 @@
 <script src="product.js"></script>
 </body>
 </html>
+

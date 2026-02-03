@@ -1,0 +1,26 @@
+{
+  "products": [
+    {
+      "name": "Mi Earpiece",
+      "slug": "mi-earpiece",
+      "category": "earpiece",
+      "image": "Picture/mi_earpiece.WEBP",
+      "price": 499,
+      "discount": "15% OFF",
+      "description": "",
+      "stock": "in",
+      "whatsappText": "I want to buy Mi Earpiece"
+    },
+    {
+      "name": "120W Mi Charger",
+      "slug": "120w-mi-charger",
+      "category": "charger",
+      "image": "Picture/120W Mi.JPG",
+      "price": 999,
+      "discount": "56% OFF",
+      "description": "",
+      "stock": "in",
+      "whatsappText": "I want to buy 120W Mi Charger"
+    }
+  ]
+}

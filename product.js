@@ -1,51 +1,94 @@
+/* =========================================================
+   PRODUCT-DETAIL PAGE  –  reads admin/db.json  (no more hard-code)
+   ========================================================= */
+
 /* ----------  READ URL PARAMS  ---------- */
 const params = new URLSearchParams(location.search);
-const id    = params.get('id');
-const cat   = params.get('cat');
-const img   = params.get('img');
-const price = params.get('price');
-const disc  = params.get('disc');
-const url   = params.get('url');
+const id     = params.get('id');   // product name
+const cat    = params.get('cat');
 
-document.getElementById('detailImg').src   = img;
-document.getElementById('detailName').textContent = id;
-document.getElementById('detailPrice').textContent = price;
-document.getElementById('detailDisc').textContent  = disc;
-document.getElementById('detailBuy').href = url;
+let fullDB = [];          // will hold every product
 
-/* ----------  BUILD “YOU MAY ALSO LIKE” SLIDER  ---------- */
-fetch('index.html')
-  .then(r => r.text())
-  .then(html => {
-     const doc = new DOMParser().parseFromString(html, 'text/html');
-     const same = [...doc.querySelectorAll('.product-card')]
-                  .filter(card => card.dataset.category === cat && card.querySelector('h3').textContent.trim() !== id);
+/* ----------  LOAD CENTRAL DB  ---------- */
+fetch('../admin/db.json')
+  .then(r => r.json())
+  .then(db => {
+     fullDB = db;
+     renderProduct();     // fill left + right column
+     renderMiniSlider();  // bottom “you may also like”
+  })
+  .catch(err => {
+     console.error(err);
+     alert('Product database not reachable');
+   });
 
-     const wrap = document.getElementById('miniWrapper');
-     same.slice(0,8).forEach(card => {
-        const clone = card.cloneNode(true);
-        clone.className = 'mini-card';
+/* ----------  RENDER THIS PRODUCT  ---------- */
+function renderProduct(){
+  const p = fullDB.find(item => item.name === id);
+  if (!p){ location.href = 'index.html'; return; }
 
-        /* ----  read data from the cloned card  ---- */
-        const miniId   = clone.querySelector('h3').textContent.trim();
-        const miniCat  = clone.dataset.category;
-        const miniImg  = clone.querySelector('img').src;
-        const miniPr   = clone.querySelector('p:not(.discount)').textContent.trim();
-        const miniDisc = clone.querySelector('.discount')?.textContent.trim() || '';
-        const miniUrl  = clone.querySelector('.buy-btn').href;
+  /* right-column info */
+  document.getElementById('detailName').textContent  = p.name;
+  document.getElementById('detailPrice').textContent = '₹' + p.price;
+  document.getElementById('detailDisc').textContent  = p.disc || '';
+  document.getElementById('detailBuy').href          = p.url;
+  if (p.stock === 'out') {
+      const btn = document.getElementById('detailBuy');
+      btn.textContent = 'Out of stock';
+      btn.style.background = '#999';
+      btn.style.pointerEvents = 'none';
+  }
 
-        /* ----  build same query-string we use for the big card  ---- */
-        const params = new URLSearchParams({
-            id: miniId, cat: miniCat, img: miniImg,
-            price: miniPr, disc: miniDisc, url: miniUrl
-        });
+  /* gallery – main + thumbs */
+  const mainPic = document.getElementById('detailMain');
+  mainPic.src = p.img;
+  const strip = document.getElementById('thumbStrip');
+  strip.innerHTML = '';
 
-        /* ----  wipe old button & make whole card a hyperlink  ---- */
-        clone.querySelector('.buy-btn')?.remove();
-        clone.addEventListener('click', () => {
-            location.href = 'product.html?' + params.toString();
-        });
+  function addThumb(src, active = false){
+    const t = document.createElement('img');
+    t.src = src;zz
+    if (active) t.classList.add('active');
+    t.addEventListener('click', () => {
+      mainPic.src = src;
+      strip.querySelectorAll('img').forEach(i => i.classList.remove('active'));
+      t.classList.add('active');
+    });
+    strip.appendChild(t);
+  }
+  /* main thumb first, then extras */
+  addThumb(p.img, true);
+  (p.imgs || []).forEach(u => addThumb(u));
+}
 
-        wrap.appendChild(clone);
-     });
+/* ----------  “YOU MAY ALSO LIKE”  ---------- */
+function renderMiniSlider(){
+  const same = fullDB.filter(item => item.cat === cat && item.name !== id).slice(0, 8);
+  const wrap = document.getElementById('miniWrapper');
+  wrap.innerHTML = '';
+
+  same.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'mini-card';
+
+    /* mini thumbnail strip (max 2 extras) */
+    card.innerHTML = `
+      <img class="thumb-main" src="${p.img}" alt="${p.name}">
+      <div class="thumb-strip">
+        ${(p.imgs||[]).slice(0,2).map(u=>`<img src="${u}" style="width:32px;height:32px">`).join('')}
+      </div>
+      <p>${p.name}</p>
+      <p style="font-weight:700;color:#e63946">₹${p.price}</p>`;
+
+    /* click whole card → go to that product */
+    card.onclick = () => {
+      const q = new URLSearchParams({
+        id: p.name, cat: p.cat, img: p.img, price: p.price,
+        disc: p.disc || '', url: p.url
+      });
+      location.href = 'product.html?' + q.toString();
+    };
+    wrap.appendChild(card);
   });
+}
+

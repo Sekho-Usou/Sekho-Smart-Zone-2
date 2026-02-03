@@ -1,0 +1,84 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "Picture/uploads"
+public_folder: "Picture/uploads"
+
+collections:
+  - name: "productdb"
+    label: "Product Database"
+    files:
+      - label: "All Products"
+        name: "products"
+        file: "products.json"
+        fields:
+          - label: "Products"
+            name: "products"
+            widget: "list"
+            allow_add: true
+            allow_delete: true
+            collapsed: false
+            fields:
+              - label: "Product Name"
+                name: "name"
+                widget: "string"
+                required: true
+              
+              - label: "Slug (URL-friendly name)"
+                name: "slug"
+                widget: "string"
+                required: true
+                hint: "e.g., mi-earpiece (no spaces, lowercase)"
+              
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options: 
+                  - { label: "Earpiece", value: "earpiece" }
+                  - { label: "Cables", value: "cable" }
+                  - { label: "Chargers", value: "charger" }
+                  - { label: "Speakers", value: "speaker" }
+                  - { label: "Adapters", value: "adapter" }
+                  - { label: "Power Banks", value: "powerbank" }
+                  - { label: "Battery", value: "battery" }
+                  - { label: "Others", value: "other" }
+                required: true
+              
+              - label: "Main Image"
+                name: "image"
+                widget: "image"
+                required: true
+                allow_multiple: false
+              
+              - label: "Price (₹)"
+                name: "price"
+                widget: "number"
+                required: true
+              
+              - label: "Discount Text"
+                name: "discount"
+                widget: "string"
+                required: false
+                hint: "e.g., 15% OFF (leave empty for no discount)"
+              
+              - label: "Description"
+                name: "description"
+                widget: "string"
+                required: false
+                hint: "Short subtitle like 'USB-A to Type C'"
+              
+              - label: "Stock Status"
+                name: "stock"
+                widget: "select"
+                options:
+                  - { label: "In Stock", value: "in" }
+                  - { label: "Out of Stock", value: "out" }
+                default: "in"
+              
+              - label: "WhatsApp Message"
+                name: "whatsappText"
+                widget: "string"
+                required: true
+                default: "I want to buy "
+                hint: "Full message: I want to buy Mi Earpiece"
