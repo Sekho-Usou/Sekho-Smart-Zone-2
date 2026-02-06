@@ -1,12 +1,5 @@
-/* ================= SEKHO SMART ZONE - DYNAMIC PRODUCT STORE ================= */
+/* ================= SEKHO SMART ZONE - DYNAMIC PRODUCTS ================= */
 
-// Configuration
-const CONFIG = {
-  contactNumber: '919862494804', // Your WhatsApp number
-  productsFolder: 'products'
-};
-
-// Store products globally
 let allProducts = [];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -19,57 +12,83 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ---------- LOAD PRODUCTS FROM JSON FILES ---------- */
 async function loadProducts() {
   try {
-    // Try to load products.json (index of all products)
-    const response = await fetch('products.json');    
+    // Load all product JSON files from content/products/
+    const response = await fetch('content/products.json');
+    
     if (!response.ok) {
-      // Fallback: manually scan directory or use static data
-      throw new Error('Dynamic products not found');
+      // Try loading individual files via directory listing (won't work on Netlify)
+      // So we'll check for a products list file instead
+      throw new Error('Products list not found');
     }
     
     const data = await response.json();
     allProducts = data.products || [];
-    
-    // Sort: newest first (based on filename/date if available)
-    allProducts.reverse();
-    
     renderProducts(allProducts);
     
   } catch (error) {
-    console.log('Using fallback product loading:', error);
-    // If CMS hasn't created files yet, show message or load static
-    document.getElementById('productList').innerHTML = `
-      <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
-        <p>Loading products from admin...</p>
-        <p style="color: #666; font-size: 0.9rem; margin-top: 1rem;">
-          If no products appear, add them via <a href="/admin/" style="color: #df0808;">Admin Panel</a>
-        </p>
-      </div>
-    `;
+    console.log('Loading products from individual files...');
+    // Fallback: load products manually or show empty state
+    await loadProductsFromFiles();
   }
+}
+
+/* Load individual JSON files */
+async function loadProductsFromFiles() {
+  // Common product slugs to try loading
+  const commonProducts = [
+    'mi-earpiece',
+    '120w-mi-charger', 
+    '25w-blackkat-cable'
+  ];
+  
+  const products = [];
+  
+  for (const slug of commonProducts) {
+    try {
+      const response = await fetch(`content/products/${slug}.json`);
+      if (response.ok) {
+        const product = await response.json();
+        products.push(product);
+      }
+    } catch (e) {
+      // File doesn't exist, skip
+    }
+  }
+  
+  allProducts = products;
+  renderProducts(products);
 }
 
 /* ---------- RENDER PRODUCTS ---------- */
 function renderProducts(products) {
   const container = document.getElementById('productList');
   
+  if (!container) return;
+  
   if (products.length === 0) {
-    container.innerHTML = '<div style="grid-column: 1/-1; text-align: center;">No products found. Add some via Admin!</div>';
+    container.innerHTML = `
+      <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+        <h3>No products yet</h3>
+        <p>Add products via <a href="/admin/" style="color: #df0808;">Admin Panel</a></p>
+      </div>
+    `;
     return;
   }
   
   container.innerHTML = products.map(product => createProductCard(product)).join('');
   
-  // Add click handlers for product detail navigation
+  // Add click handlers
   document.querySelectorAll('.product-card').forEach(card => {
     card.addEventListener('click', (e) => {
-      if (e.target.classList.contains('buy-btn')) return; // Let buy button work
+      if (e.target.classList.contains('buy-btn')) return;
       navigateToProduct(card.dataset.id);
     });
   });
 }
 
 function createProductCard(product) {
-  const whatsappUrl = `https://wa.me/${CONFIG.contactNumber}?text=${encodeURIComponent(product.whatsappText || `I want to buy ${product.name}`)}`;
+  const contactNumber = '919862494804';
+  const whatsappUrl = `https://wa.me/${contactNumber}?text=${encodeURIComponent(product.whatsappText || `I want to buy ${product.title}`)}`;
   
   const stockBadge = product.stock === 'out' 
     ? '<span style="position: absolute; top: 10px; right: 10px; background: #999; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">OUT OF STOCK</span>' 
@@ -84,10 +103,10 @@ function createProductCard(product) {
     : '';
   
   return `
-    <div class="product-card" data-id="${product.slug || product.name}" data-category="${product.category}" tabindex="0">
+    <div class="product-card" data-id="${product.slug}" data-category="${product.category}" tabindex="0">
       ${stockBadge}
-      <img src="${product.image}" alt="${product.name}" loading="lazy">
-      <h3>${product.name}</h3>
+      <img src="${product.image}" alt="${product.title}" loading="lazy">
+      <h3>${product.title}</h3>
       ${descHtml}
       ${discountHtml}
       <p style="font-weight: 700; color: #111; font-size: 1.1rem; margin: 0.5rem 0;">₹${product.price}</p>
@@ -100,19 +119,20 @@ function createProductCard(product) {
 
 /* ---------- NAVIGATE TO PRODUCT DETAIL ---------- */
 function navigateToProduct(productId) {
-  const product = allProducts.find(p => (p.slug || p.name) === productId);
+  const product = allProducts.find(p => p.slug === productId);
   if (!product) return;
   
+  const contactNumber = '919862494804';
   const params = new URLSearchParams({
-    id: product.slug || product.name,
-    name: product.name,
+    id: product.slug,
+    name: product.title,
     cat: product.category,
     img: product.image,
     price: product.price,
     disc: product.discount || '',
     desc: product.description || '',
     stock: product.stock,
-    url: `https://wa.me/${CONFIG.contactNumber}?text=${encodeURIComponent(product.whatsappText || `I want to buy ${product.name}`)}`
+    url: `https://wa.me/${contactNumber}?text=${encodeURIComponent(product.whatsappText || `I want to buy ${product.title}`)}`
   });
   
   window.location.href = 'product.html?' + params.toString();
@@ -127,11 +147,13 @@ function filterProducts(category) {
     card.style.display = shouldShow ? 'block' : 'none';
   });
   
-  // Update active button state
+  // Update active button
   document.querySelectorAll('.filter-buttons button').forEach(btn => {
     btn.classList.remove('active');
   });
-  event.target.classList.add('active');
+  if (event && event.target) {
+    event.target.classList.add('active');
+  }
 }
 
 /* ---------- SEARCH ---------- */
@@ -154,23 +176,28 @@ function initSearch() {
 function initSlider() {
   const slider = document.querySelector('.slider');
   const slidesContainer = document.querySelector('.slides');
+  if (!slider || !slidesContainer) return;
+  
   const slides = Array.from(document.querySelectorAll('.slides img'));
   const dotsContainer = document.querySelector('.dots');
   
-  if (!slider || slides.length === 0) return;
+  if (slides.length === 0) return;
   
   let slideIndex = 0;
   let intervalId = null;
   const total = slides.length;
 
   // Create dots
-  dotsContainer.innerHTML = '';
-  for (let i = 0; i < total; i++) {
-    const dot = document.createElement('span');
-    dot.className = 'dot';
-    dot.addEventListener('click', () => showSlide(i));
-    dotsContainer.appendChild(dot);
+  if (dotsContainer) {
+    dotsContainer.innerHTML = '';
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement('span');
+      dot.className = 'dot';
+      dot.addEventListener('click', () => showSlide(i));
+      dotsContainer.appendChild(dot);
+    }
   }
+  
   const dots = Array.from(document.querySelectorAll('.dot'));
 
   function showSlide(index) {
@@ -179,7 +206,7 @@ function initSlider() {
     slideIndex = index;
     slidesContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
     dots.forEach(d => d.classList.remove('active'));
-    dots[slideIndex].classList.add('active');
+    if (dots[slideIndex]) dots[slideIndex].classList.add('active');
   }
 
   function moveSlide(n) {
@@ -191,7 +218,7 @@ function initSlider() {
 
   function startAuto() {
     stopAuto();
-    intervalId = setInterval(() => moveSlide(1), 2000);
+    intervalId = setInterval(() => moveSlide(1), 3000);
   }
   
   function stopAuto() {
@@ -212,26 +239,6 @@ function initFilterStrip() {
   
   let down = false, startX, scrollLeft;
 
-  // Touch events
-  strip.addEventListener('touchstart', e => {
-    down = true;
-    strip.classList.add('grabbing');
-    startX = e.touches[0].pageX - strip.offsetLeft;
-    scrollLeft = strip.scrollLeft;
-  }, {passive: true});
-
-  strip.addEventListener('touchmove', e => {
-    if (!down) return;
-    const x = e.touches[0].pageX - strip.offsetLeft;
-    strip.scrollLeft = scrollLeft - (x - startX) * 1.6;
-  }, {passive: true});
-
-  strip.addEventListener('touchend', () => {
-    down = false;
-    strip.classList.remove('grabbing');
-  });
-
-  // Mouse events
   strip.addEventListener('mousedown', e => {
     down = true;
     startX = e.pageX - strip.offsetLeft;
@@ -247,5 +254,22 @@ function initFilterStrip() {
   window.addEventListener('mouseup', () => {
     down = false;
     strip.classList.remove('grabbing');
+  });
+
+  // Touch events
+  strip.addEventListener('touchstart', e => {
+    down = true;
+    startX = e.touches[0].pageX - strip.offsetLeft;
+    scrollLeft = strip.scrollLeft;
+  }, {passive: true});
+
+  strip.addEventListener('touchmove', e => {
+    if (!down) return;
+    const x = e.touches[0].pageX - strip.offsetLeft;
+    strip.scrollLeft = scrollLeft - (x - startX) * 1.6;
+  }, {passive: true});
+
+  strip.addEventListener('touchend', () => {
+    down = false;
   });
 }
