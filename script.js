@@ -1,275 +1,176 @@
-/* ================= SEKHO SMART ZONE - DYNAMIC PRODUCTS ================= */
-
-let allProducts = [];
+// product.js - Product Detail Page Logic
 
 document.addEventListener('DOMContentLoaded', () => {
-  loadProducts();
-  initSlider();
-  initSearch();
-  initFilterStrip();
+  loadProductDetails();
+  loadRelatedProducts();
 });
 
-/* ---------- LOAD PRODUCTS FROM JSON FILES ---------- */
-async function loadProducts() {
-  try {
-    // Load all product JSON files from content/products/
-    const response = await fetch('content/products.json');
-    
-    if (!response.ok) {
-      // Try loading individual files via directory listing (won't work on Netlify)
-      // So we'll check for a products list file instead
-      throw new Error('Products list not found');
-    }
-    
-    const data = await response.json();
-    allProducts = data.products || [];
-    renderProducts(allProducts);
-    
-  } catch (error) {
-    console.log('Loading products from individual files...');
-    // Fallback: load products manually or show empty state
-    await loadProductsFromFiles();
-  }
-}
-
-/* Load individual JSON files */
-async function loadProductsFromFiles() {
-  // Common product slugs to try loading
-  const commonProducts = [
-    'mi-earpiece',
-    '120w-mi-charger', 
-    '25w-blackkat-cable'
-  ];
+/* ---------- LOAD PRODUCT FROM URL PARAMS ---------- */
+function loadProductDetails() {
+  const params = new URLSearchParams(window.location.search);
   
-  const products = [];
+  // Extract data from URL
+  const name = params.get('name') || 'Product Name';
+  const price = params.get('price') || '0';
+  const discount = params.get('disc') || '';
+  const image = params.get('img') || 'Picture/placeholder.jpg';
+  const description = params.get('desc') || '';
+  const whatsappUrl = params.get('url') || '#';
+  const category = params.get('cat') || 'all';
   
-  for (const slug of commonProducts) {
-    try {
-      const response = await fetch(`content/products/${slug}.json`);
-      if (response.ok) {
-        const product = await response.json();
-        products.push(product);
-      }
-    } catch (e) {
-      // File doesn't exist, skip
-    }
-  }
+  // Populate DOM
+  document.getElementById('detailName').textContent = name;
+  document.getElementById('detailPrice').textContent = '₹' + price;
+  document.getElementById('detailDisc').textContent = discount;
+  document.getElementById('detailBuy').href = whatsappUrl;
   
-  allProducts = products;
-  renderProducts(products);
-}
-
-/* ---------- RENDER PRODUCTS ---------- */
-function renderProducts(products) {
-  const container = document.getElementById('productList');
+  // Main image
+  const mainImg = document.getElementById('detailMain');
+  mainImg.src = image;
+  mainImg.alt = name;
   
-  if (!container) return;
+  // Thumbnail strip - since no admin, create single thumb or multiple if available
+  const thumbStrip = document.getElementById('thumbStrip');
   
-  if (products.length === 0) {
-    container.innerHTML = `
-      <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
-        <h3>No products yet</h3>
-        <p>Add products via <a href="/admin/" style="color: #df0808;">Admin Panel</a></p>
-      </div>
-    `;
-    return;
-  }
+  // For demo purposes, show the main image as thumbnail
+  // In a real scenario with multiple images, you'd pass them as img1, img2, etc.
+  const thumbs = [image]; // Could expand to [image, image2, image3] if available
   
-  container.innerHTML = products.map(product => createProductCard(product)).join('');
-  
-  // Add click handlers
-  document.querySelectorAll('.product-card').forEach(card => {
-    card.addEventListener('click', (e) => {
-      if (e.target.classList.contains('buy-btn')) return;
-      navigateToProduct(card.dataset.id);
+  if (thumbs.length > 1) {
+    thumbs.forEach((thumbSrc, index) => {
+      const img = document.createElement('img');
+      img.src = thumbSrc;
+      img.className = index === 0 ? 'active' : '';
+      img.onclick = () => {
+        mainImg.src = thumbSrc;
+        document.querySelectorAll('.thumb-strip img').forEach(t => t.classList.remove('active'));
+        img.classList.add('active');
+      };
+      thumbStrip.appendChild(img);
     });
-  });
+  } else {
+    // If only one image, hide thumbnail strip or show single thumb
+    thumbStrip.style.display = 'none';
+  }
 }
 
-function createProductCard(product) {
-  const contactNumber = '919862494804';
-  const whatsappUrl = `https://wa.me/${contactNumber}?text=${encodeURIComponent(product.whatsappText || `I want to buy ${product.title}`)}`;
+/* ---------- RELATED PRODUCTS (HARDCODED - NO ADMIN) ---------- */
+// Sample products from your existing inventory
+const relatedInventory = [
+  {
+    name: 'Mi Earpiece',
+    price: '499',
+    image: 'Picture/mi_earpiece.WEBP',
+    cat: 'earpiece',
+    url: 'https://wa.me/919862494804?text=I want to buy Mi earpiece'
+  },
+  {
+    name: '120W Mi Charger',
+    price: '999',
+    image: 'Picture/120W Mi.JPG',
+    cat: 'charger',
+    url: 'https://wa.me/919862494804?text=I want to buy 120W Mi Charger'
+  },
+  {
+    name: 'Mi 20000mAh Power Bank',
+    price: '2499',
+    image: 'Picture/mi_powerbank.JPG',
+    cat: 'powerbank',
+    url: 'https://wa.me/919862494804?text=I want to buy 20000mAh Power Bank'
+  },
+  {
+    name: '25W Samsung Adapter',
+    price: '1199',
+    image: 'Picture/25W sm.JPG',
+    cat: 'adapter',
+    url: 'https://wa.me/919862494804?text=I want to buy 25W Samsung Adapter'
+  },
+  {
+    name: 'Bluei Earpiece',
+    price: '149',
+    image: 'Picture/bluei earpiece.WEBP',
+    cat: 'earpiece',
+    url: 'https://wa.me/919862494804?text=I want to buy Bluei Earpiece'
+  },
+  {
+    name: '65W Realme Cable',
+    price: '249',
+    image: 'Picture/65W realme cable.JPG',
+    cat: 'cable',
+    url: 'https://wa.me/919862494804?text=I want to buy 65W Realme Fast Charging Cable'
+  }
+];
+
+function loadRelatedProducts() {
+  const params = new URLSearchParams(window.location.search);
+  const currentCat = params.get('cat') || 'all';
+  const currentName = params.get('name') || '';
   
-  const stockBadge = product.stock === 'out' 
-    ? '<span style="position: absolute; top: 10px; right: 10px; background: #999; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">OUT OF STOCK</span>' 
-    : '';
+  const wrapper = document.getElementById('miniWrapper');
+  if (!wrapper) return;
   
-  const discountHtml = product.discount 
-    ? `<p class="discount">${product.discount}</p>` 
-    : '';
+  // Filter related products by same category, exclude current product
+  let related = relatedInventory.filter(p => 
+    p.cat === currentCat && p.name !== currentName
+  );
   
-  const descHtml = product.description 
-    ? `<p style="color: #666; font-size: 0.85rem; margin: 0.3rem 0;">${product.description}</p>` 
-    : '';
+  // If no same-category items or too few, fill with random others
+  if (related.length < 4) {
+    const others = relatedInventory.filter(p => 
+      p.name !== currentName && !related.includes(p)
+    );
+    related = related.concat(others).slice(0, 6);
+  }
   
-  return `
-    <div class="product-card" data-id="${product.slug}" data-category="${product.category}" tabindex="0">
-      ${stockBadge}
-      <img src="${product.image}" alt="${product.title}" loading="lazy">
-      <h3>${product.title}</h3>
-      ${descHtml}
-      ${discountHtml}
-      <p style="font-weight: 700; color: #111; font-size: 1.1rem; margin: 0.5rem 0;">₹${product.price}</p>
-      <a href="${whatsappUrl}" class="buy-btn" target="_blank" ${product.stock === 'out' ? 'style="background: #999; pointer-events: none;"' : ''}>
-        ${product.stock === 'out' ? 'Out of Stock' : 'Buy Now'}
-      </a>
+  // Build HTML
+  wrapper.innerHTML = related.map(product => `
+    <div class="mini-card" onclick="navigateToProduct('${encodeURIComponent(product.name)}', '${product.price}', '${product.cat}', '${product.image}', '${encodeURIComponent(product.url)}')">
+      <img src="${product.image}" alt="${product.name}" loading="lazy">
+      <p>${product.name}</p>
+      <p style="color:#e63946;font-weight:700">₹${product.price}</p>
     </div>
-  `;
+  `).join('');
 }
 
-/* ---------- NAVIGATE TO PRODUCT DETAIL ---------- */
-function navigateToProduct(productId) {
-  const product = allProducts.find(p => p.slug === productId);
-  if (!product) return;
-  
-  const contactNumber = '919862494804';
+/* ---------- NAVIGATE TO ANOTHER PRODUCT ---------- */
+function navigateToProduct(name, price, cat, img, url) {
   const params = new URLSearchParams({
-    id: product.slug,
-    name: product.title,
-    cat: product.category,
-    img: product.image,
-    price: product.price,
-    disc: product.discount || '',
-    desc: product.description || '',
-    stock: product.stock,
-    url: `https://wa.me/${contactNumber}?text=${encodeURIComponent(product.whatsappText || `I want to buy ${product.title}`)}`
+    name: decodeURIComponent(name),
+    price: price,
+    cat: cat,
+    img: img,
+    url: decodeURIComponent(url)
   });
   
   window.location.href = 'product.html?' + params.toString();
 }
 
-/* ---------- FILTER PRODUCTS ---------- */
-function filterProducts(category) {
-  const cards = document.querySelectorAll('.product-card');
-  
-  cards.forEach(card => {
-    const shouldShow = category === 'all' || card.dataset.category === category;
-    card.style.display = shouldShow ? 'block' : 'none';
-  });
-  
-  // Update active button
-  document.querySelectorAll('.filter-buttons button').forEach(btn => {
-    btn.classList.remove('active');
-  });
-  if (event && event.target) {
-    event.target.classList.add('active');
-  }
-}
+/* ---------- DRAGGABLE MINI SLIDER ---------- */
+const miniWrapper = document.getElementById('miniWrapper');
+if (miniWrapper) {
+  let down = false;
+  let startX;
+  let scrollLeft;
 
-/* ---------- SEARCH ---------- */
-function initSearch() {
-  const searchInput = document.getElementById('searchInput');
-  if (!searchInput) return;
-  
-  searchInput.addEventListener('keyup', () => {
-    const filter = searchInput.value.toLowerCase();
-    const cards = document.querySelectorAll('.product-card');
-    
-    cards.forEach(card => {
-      const name = card.querySelector('h3').textContent.toLowerCase();
-      card.style.display = name.includes(filter) ? 'block' : 'none';
-    });
-  });
-}
-
-/* ---------- IMAGE SLIDER ---------- */
-function initSlider() {
-  const slider = document.querySelector('.slider');
-  const slidesContainer = document.querySelector('.slides');
-  if (!slider || !slidesContainer) return;
-  
-  const slides = Array.from(document.querySelectorAll('.slides img'));
-  const dotsContainer = document.querySelector('.dots');
-  
-  if (slides.length === 0) return;
-  
-  let slideIndex = 0;
-  let intervalId = null;
-  const total = slides.length;
-
-  // Create dots
-  if (dotsContainer) {
-    dotsContainer.innerHTML = '';
-    for (let i = 0; i < total; i++) {
-      const dot = document.createElement('span');
-      dot.className = 'dot';
-      dot.addEventListener('click', () => showSlide(i));
-      dotsContainer.appendChild(dot);
-    }
-  }
-  
-  const dots = Array.from(document.querySelectorAll('.dot'));
-
-  function showSlide(index) {
-    if (index < 0) index = total - 1;
-    if (index >= total) index = 0;
-    slideIndex = index;
-    slidesContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
-    dots.forEach(d => d.classList.remove('active'));
-    if (dots[slideIndex]) dots[slideIndex].classList.add('active');
-  }
-
-  function moveSlide(n) {
-    showSlide(slideIndex + n);
-  }
-
-  document.querySelector('.prev')?.addEventListener('click', () => moveSlide(-1));
-  document.querySelector('.next')?.addEventListener('click', () => moveSlide(1));
-
-  function startAuto() {
-    stopAuto();
-    intervalId = setInterval(() => moveSlide(1), 3000);
-  }
-  
-  function stopAuto() {
-    if (intervalId) clearInterval(intervalId);
-  }
-
-  slider.addEventListener('mouseenter', stopAuto);
-  slider.addEventListener('mouseleave', startAuto);
-
-  showSlide(0);
-  startAuto();
-}
-
-/* ---------- DRAGGABLE FILTER STRIP ---------- */
-function initFilterStrip() {
-  const strip = document.querySelector('.filter-buttons');
-  if (!strip) return;
-  
-  let down = false, startX, scrollLeft;
-
-  strip.addEventListener('mousedown', e => {
+  miniWrapper.addEventListener('mousedown', (e) => {
     down = true;
-    startX = e.pageX - strip.offsetLeft;
-    scrollLeft = strip.scrollLeft;
-    strip.classList.add('grabbing');
+    startX = e.pageX - miniWrapper.offsetLeft;
+    scrollLeft = miniWrapper.scrollLeft;
   });
-  
-  window.addEventListener('mousemove', e => {
-    if (!down) return;
-    strip.scrollLeft = scrollLeft - (e.pageX - strip.offsetLeft - startX) * 1.6;
-  });
-  
-  window.addEventListener('mouseup', () => {
+
+  miniWrapper.addEventListener('mouseleave', () => {
     down = false;
-    strip.classList.remove('grabbing');
   });
 
-  // Touch events
-  strip.addEventListener('touchstart', e => {
-    down = true;
-    startX = e.touches[0].pageX - strip.offsetLeft;
-    scrollLeft = strip.scrollLeft;
-  }, {passive: true});
-
-  strip.addEventListener('touchmove', e => {
-    if (!down) return;
-    const x = e.touches[0].pageX - strip.offsetLeft;
-    strip.scrollLeft = scrollLeft - (x - startX) * 1.6;
-  }, {passive: true});
-
-  strip.addEventListener('touchend', () => {
+  miniWrapper.addEventListener('mouseup', () => {
     down = false;
+  });
+
+  miniWrapper.addEventListener('mousemove', (e) => {
+    if (!down) return;
+    e.preventDefault();
+    const x = e.pageX - miniWrapper.offsetLeft;
+    const walk = (x - startX) * 2;
+    miniWrapper.scrollLeft = scrollLeft - walk;
   });
 }

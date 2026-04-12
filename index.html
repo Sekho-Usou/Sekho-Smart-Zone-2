@@ -6,37 +6,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sekho Smart Zone</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="Picture/sz logo.png"> 
+   <link rel="icon" type="image/png" href="Picture/sz logo.png"> 
+
+   
 </head>
 <body>
-  <!-- Include Netlify Identity for admin redirect handling -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-    }
-  </script>
-
   <header>
     <h1>
-      <img src="Picture/sz logo.png" alt="Logo" style="height: 35px; vertical-align: middle; margin-right: 8px; filter: brightness(0) invert(1);">
-      Sekho Üsou Smart Zone 
+        <img src="Picture/sz logo.png" alt="Logo"
+     style="height: 35px; vertical-align: middle; margin-right: 8px; filter: brightness(0) invert(1);">
+        Sekho Üsou Smart Zone 
     </h1>
+
     <nav>
       <a href="#home">Home</a>
       <a href="#products">Products</a>
       <a href="#contact">Contact</a>
       <a href="#about">About Us</a>
-      <a href="/admin/" class="admin-link" style="background: #df0808; padding: 0.4rem 1rem; border-radius: 20px;">Admin</a>
-      <a href="https://wa.me/?text=Check%20out%20Sekho%20Smart%20Zone !%0Ahttps://sekhosmartzone.netlify.app" target="_blank" rel="noopener" class="share-btn">Share our store</a>
+      <a href="https://wa.me/?text=Check%20out%20Sekho%20Smart%20Zone!%0Ahttps://sekhosmartzone.netlify.app"
+        target="_blank" rel="noopener" class="share-btn">
+        Share our store
+      </a>
     </nav>
-  </header>
+</header>
 
   <section id="home" class="hero">
     <h2>Your Trusted Store</h2>
@@ -44,22 +36,21 @@
     <a href="#products" class="btn">Shop Now</a>
   </section>
 
-  <!-- IMAGE SLIDER -->
-  <div class="slider">
-    <div class="slides" id="heroSlides">
-      <!-- Slides will be populated dynamically or keep static -->
-      <img src="Picture/bluei Earpiece.JPG" alt="Slide 1">
-      <img src="Picture/Mi cable.JPG" alt="Slide 2">
-      <img src="Picture/USB to Lightning.JPG" alt="Slide 3">
-      <img src="Picture/Oneplus Cable.JPG" alt="Slide 4">
-      <img src="Picture/Iphone 11 Battery.JPG" alt="Slide 5">
+    <!-- IMAGE SLIDER -->
+    <div class="slider">
+      <div class="slides">
+        <img src="Picture/bluei Earpiece.JPG" alt="Slide 1">
+        <img src="Picture/Mi cable.JPG" alt="Slide 2">
+        <img src="Picture/USB to Lightning.JPG" alt="Slide 3">
+        <img src="Picture/Oneplus Cable.JPG" alt="Slide 4">
+        <img src="Picture/Iphone 11 Battery.JPG" alt="Slide 5">
+      </div>
+      <button class="prev" aria-label="Previous slide">&#10094;</button>
+      <button class="next" aria-label="Next slide">&#10095;</button>
+      <div class="dots"></div>
     </div>
-    <button class="prev" aria-label="Previous slide">&#10094;</button>
-    <button class="next" aria-label="Next slide">&#10095;</button>
-    <div class="dots"></div>
-  </div>
 
-  <section id="products">
+    <section id="products">
     <h2>Our Products</h2>
 
     <div class="search-bar">
@@ -81,14 +72,289 @@
       </div>
     </div>
 
-    <!-- Dynamic Product Container -->
     <div class="product-container" id="productList">
-      <!-- Products will be loaded here dynamically -->
-      <div class="loading">Loading products...</div>
+
+      <div class="product-card" data-category="earpiece" tabindex="0">
+        <img src="Picture/mi_earpiece.WEBP" alt="Mi Earpiece">
+        <h3>Mi Earpiece</h3>
+        <p class="discount">15% OFF</p>
+        <p>₹499.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy Mi earpiece" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="charger" tabindex="0">
+        <img src="Picture/120W Mi.JPG" alt="120W Mi Charger">
+        <h3>120W Mi Charger</h3>
+        <p class="discount">56% OFF</p>
+        <p>₹999.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy 120W Mi Charger" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="cable" tabindex="0">
+        <img src="Picture/25W blackkat.JPG" alt="25W BlackKat Cable">
+        <h3>25W BlackKat Cable</h3>
+        <p>USB-A to Type C</p>
+        <p class="discount">20% OFF</p>
+        <p>₹149.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy 65W Realme Fast Charging Cable" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="other" tabindex="0">
+        <img src="Picture/etar aux.JPG" alt="Aux">
+        <h3>AUX</h3>
+        <p class="discount">30% OFF</p>
+        <p>₹149.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy AUX" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="powerbank" tabindex="0">
+        <img src="Picture/mi_powerbank.JPG" alt="Power Bank">
+        <h3>Mi 20000mAh Power Bank</h3>
+        <p class="discount">30% OFF</p>
+        <p>₹2499.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy 20000mAh Power Bank" class="buy-btn" target="_blank">Buy Now</a>
+      </div>      
+
+      <div class="product-card" data-category="charger">
+        <img src="Picture/120W Oppo.JPG" alt="120W Oppo Charger" tabindex="0">
+        <h3>120W Oppo Charger</h3>
+        <p class="discount">56% OFF</p>
+        <p>₹999.00</p>
+        <a href="https://wa.me/919862494804?text=I  want to buy 120W Oppo Charger" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="battery" tabindex="0">
+        <img src="Picture/Bali Battery.JPG" alt="Battery">
+        <h3>Original Battery</h3>
+        <p>Android Battery</p>  
+        <p class="discount">45% OFF</p>
+        <p>₹1199.00 and above</p>
+        <a href="https://wa.me/919862494804?text=I  want to buy Android Battery" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+      
+      <div class="product-card" data-category="charger" tabindex="0">
+        <img src="Picture/85W Realme.JPG" alt="85W Realme Charger">
+        <h3>85W Realme Charger</h3>
+        <p class="discount">60% OFF</p>
+        <p>₹599.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy 85W Realme Charger" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+       <div class="product-card" data-category="speaker" tabindex="0">
+        <img src="https://via.placeholder.com/250" alt="Bluetooth Speaker">
+        <h3>Bluetooth Speaker</h3>
+        <p>₹1499.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy Bluetooth Speaker" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="adapter" tabindex="0">
+        <img src="Picture/25W sm.JPG" alt="25W Samsung Adapter">
+        <h3>25W Samsung Adapter</h3>
+        <p class="discount">25% OFF</p>
+        <p>₹1199.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy 25W Samsung Adapter" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="charger" tabindex="0">
+        <img src="Picture/120W Oneplus.JPG" alt="120W OnePlus Charger">
+        <h3>120W OnePlus Charger</h3>
+        <p class="discount">56% OFF</p>
+        <p>₹999.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy 120W Oneplus Charger" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="cable" tabindex="0">
+        <img src="Picture/C to Lightning Cable.JPG" alt="C to Lightning Cable">
+        <h3>C to Lightning Cable</h3>
+        <p class="discount">60% OFF</p>
+        <p>₹799.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy C to Lightning Cable" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="cable" tabindex="0">
+        <img src="Picture/USB to Lightning.JPG" alt="USB to Lightning Cable">
+        <h3>USB to Lightning Cable</h3>
+        <p class="discount">55% OFF</p>
+        <p>₹699.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy USB to Lightning Cable" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="cable" tabindex="0">
+        <img src="Picture/65W realme cable.JPG" alt="65W Realme Cable">
+        <h3>65W Realme Fast Charging Cable</h3>
+        <p>USB-A to Micro USB</p>
+        <p class="discount">50% OFF</p>
+        <p>₹249.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy 65W Realme Fast Charging Cable" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="adapter" tabindex="0">
+        <img src="Picture/35w_adapter.JPG" alt="35W Apple Adapter">
+        <h3>35W USB C + C Apple Adapter</h3>
+        <p class="discount">40% OFF</p>
+        <p>₹2499.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy 35W Apple Adapter" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="charger" tabindex="0">
+        <img src="Picture/85W Oppo.JPG" alt="85W Oppo Charger">
+        <h3>85W Oppo Charger</h3>
+        <p class="discount">60% OFF</p>
+        <p>₹599.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy 85W Oppo Charger" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="earpiece" tabindex="0">
+        <img src="Picture/bluei earpiece.WEBP" alt="Earpiece">
+        <h3>Earpiece</h3>
+        <p>Bluei Earpiece</p>
+        <p class="discount">20% OFF</p>
+        <p>₹149.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy Bluei Earpiece" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="cable" tabindex="0">
+        <img src="Picture/65W vivo cable.JPG" alt="65W Vivo Cable">
+        <h3>65W Vivo Fast Charging Cable</h3>
+        <p>USB-A to Micro USB</p>
+        <p class="discount">50% OFF</p>
+        <p>₹249.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy 65W Vivo Fast Charging Cable" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="adapter" tabindex="0">
+        <img src="Picture/45W sm.JPG" alt="45W Samsung Adapter">
+        <h3>45W Samsung Adapter</h3>
+        <p class="discount">30% OFF</p>
+        <p>₹2499.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy 45W Samsung Adapter" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="cable" tabindex="0">
+        <img src="Picture/65W mi cable.JPG" alt="65W mi Cable">
+        <h3>65W Mi Fast Charging Cable</h3>
+        <p>USB-A to Micro USB</p>
+        <p class="discount">50% OFF</p>
+        <p>₹249.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy 65W Mi Fast Charging Cable" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="other" tabindex="0">
+        <img src="Picture/lightning to jack.JPG" alt="Lightning to jack">
+        <h3>Lightning to jack</h3>
+        <p>For Iphone</p>
+        <p class="discount">50% OFF</p>
+        <p>₹299.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy Lightning to Jack" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="cable" tabindex="0">
+        <img src="Picture/type c to c.JPG" alt="Type C to C Cable">
+        <h3>Type C to C Fast Charging Cable</h3>
+        <p>Type C to C</p>
+        <p class="discount">60% OFF</p>
+        <p>₹899.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy Type C to C Fast Charging Cable" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="adapter" tabindex="0">
+        <img src="Picture/20w_adapter.PNG" alt="20W Apple Adapter">
+        <h3>20W USB C + C Apple Adapter</h3>
+        <p class="discount">21% OFF</p>
+        <p>₹1499.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy 20W Apple Adapter" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="charger" tabindex="0">
+        <img src="Picture/85W Vivo.JPG" alt="85W Vivo Charger">
+        <h3>85W Vivo Charger</h3>
+        <p class="discount">60% OFF</p>
+        <p>₹599.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy 85W Vivo Charger" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="cable" tabindex="0">
+        <img src="Picture/65W oneplus cable.JPG" alt="65W Oneplus Cable">
+        <h3>65W Oneplus Fast Charging Cable</h3>
+        <p>USB-A to Micro USB</p>
+        <p class="discount">50% OFF</p>
+        <p>₹249.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy 65W Oneplus Fast Charging Cable" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="charger" tabindex="0">
+        <img src="Picture/120W Realme.JPG" alt="120W Realme Charger">
+        <h3>120W Realme Charger</h3>
+        <p class="discount">56% OFF</p>
+        <p>₹999.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy 120W Realme Charger" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="cable" tabindex="0">
+        <img src="Picture/65W oppo cable.JPG" alt="65W Oppo Cable">
+        <h3>65W Oppo Fast Charging Cable</h3>
+        <p>USB-A to Micro USB</p>
+        <p class="discount">50% OFF</p>
+        <p>₹249.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy 65W Oppo Fast Charging Cable" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="battery" tabindex="0">
+        <img src="Picture/Iphone 11 Battery.JPG" alt="Iphone Battery">
+        <h3>Iphone Battery</h3>
+        <p>Iphone 11 Battery</p>  
+        <p class="discount">50% OFF</p>
+        <p>₹1799.00</p>
+        <a href="https://wa.me/919862494804?text=I  want to buy Iphone 11 Battery" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+    
+      <div class="product-card" data-category="battery" tabindex="0">
+        <img src="Picture/Mobicrown Battery.JPG" alt="Battery">
+        <h3>Battery</h3>
+        <p>Iphone Battery</p>  
+        <p class="discount">40% OFF</p>
+        <p>₹1499.00 and above</p>
+        <a href="https://wa.me/919862494804?text=I want to buy Mobicrown Iphone Battery" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="charger" tabindex="0">
+        <img src="Picture/Etar Charger 2.JPG" alt="Charger">
+        <h3>Charger</h3>
+        <p>Etar Charger</p>  
+        <p class="discount">35% OFF</p>
+        <p>₹299.00</p>
+        <a href="https://wa.me/919862494804?text=I  want to buy Etar Charger 2" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="battery" tabindex="0">
+        <img src="Picture/Bali Battery.JPG" alt="Battery">
+        <h3>Battery</h3>
+        <p>Iphone Battery</p>  
+        <p class="discount">50% OFF</p>
+        <p>₹1499.00 and above</p>
+        <a href="https://wa.me/919862494804?text=I  want to buy Iphone Battery" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="charger" tabindex="0">
+        <img src="Picture/Etar Charger.JPG" alt="Charger">
+        <h3>Charger</h3>
+        <p>Etar Charger</p>  
+        <p class="discount">35% OFF</p>
+        <p>₹299.00</p>
+        <a href="https://wa.me/919862494804?text=I want to buy Etar Charger" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="product-card" data-category="battery" tabindex="0">
+        <img src="Picture/Mobicrown Battery.JPG" alt="Battery">
+        <h3>Original Battery</h3>
+        <p>Android Battery</p>  
+        <p class="discount">40% OFF</p>
+        <p>₹1199.00 and above</p>
+        <a href="https://wa.me/919862494804?text=I want to buy Mobicrown Android Battery" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
     </div>
   </section>
 
-  <!-- Rest of your sections remain the same -->
   <section id="about">
     <h2>About Us</h2>
     <p>
@@ -98,29 +364,33 @@
     </p>
   </section>
 
-  <p style="text-align:center; margin-top:1rem;">
+<p style="text-align:center; margin-top:1rem;">
     Need a website for your own shop or dream project? 
-    Send us "Build my site" on WhatsApp for detailed about the website and the price.
+    Send us “Build my site” on WhatsApp for detailed about the website and the price.
   </p>
-
   <section id="contact">
-    <h2>Contact Us</h2>
-    <div class="contact-item">
-      <img src="Picture/logo-whatsapp-png.png" alt="WhatsApp" class="icon">
-      <p>WhatsApp: <a href="https://wa.me/919862494804" target="_blank">Chat Now</a></p>
-    </div>
-    <div class="contact-item">
-      <img src="Picture/youtube-logo.png" alt="YouTube" class="icon">
-      <p>YouTube: <a href="https://www.youtube.com/channel/UC1322qkE9Bcjigop3Ik9pYg" target="_blank">Sekho Tech</a></p>
-    </div>
-    <div class="contact-item">
-      <img src="Picture/Instagram-Logo-PNG.png" alt="Instagram" class="icon">
-      <p>Instagram: <a href="https://instagram.com/sekho_deals" target="_blank">sekho_smart_zone</a></p>
-    </div>
-    <div class="contact-item">
-      <img src="Picture/Location_png.png" alt="Location" class="icon">
-      <p>Address: Chiephobozou, Kohima, Nagaland</p>
-    </div>
+   <h2>Contact Us</h2>
+
+  <div class="contact-item">
+    <img src="Picture/logo-whatsapp-png.png" alt="WhatsApp" class="icon">
+    <p>WhatsApp: <a href="https://wa.me/919862494804" target="_blank">Chat Now</a></p>
+  </div>
+
+  <div class="contact-item">
+    <img src="Picture/youtube-logo.png" alt="Location" class="icon">
+    <p>Youtube: <a href="https://www.youtube.com/channel/UC1322qkE9Bcjigop3Ik9pYg" target="_blank">Sekho Tech</a></p>
+   </div>
+
+  <div class="contact-item">
+    <img src="Picture/Instagram-Logo-PNG.png" alt="Instagram" class="icon">
+    <p>Instagram: <a href="https://instagram.com/sekho_deals" target="_blank">sekho_smart_zone</a></p>
+  </div>
+
+  <div class="contact-item">
+    <img src="Picture/Location_png.png" alt="Location" class="icon">
+    <p>Address: Chiephobozou, Kohima, Nagaland</p>
+   </div>
+
   </section>
 
   <footer>
