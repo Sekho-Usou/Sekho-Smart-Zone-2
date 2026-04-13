@@ -1,401 +1,631 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="google-site-verification" content="j7sdONYOizZOSVS4GAathNCDeoRPSnTOK3KHjj-M9Ds" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sekho Smart Zone</title>
-  <link rel="stylesheet" href="style.css">
-   <link rel="icon" type="image/png" href="Picture/sz logo.png"> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sekho Smart Zone - Your Trusted Store for Mobile Accessories and Electronics. Affordable, reliable, stylish products from Chiephobozou, Kohima, Nagaland." />
+  <meta name="keywords" content="mobile accessories, electronics, earphones, cables, chargers, power banks, Nagaland, Kohima" />
+  <meta name="author" content="Sekho Üsou Smart Zone" />
+  <meta name="theme-color" content="#0f172a" />
 
-   
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Sekho Smart Zone - Mobile Accessories & Electronics" />
+  <meta property="og:description" content="Your Trusted Store for Mobile Accessories and Electronics. Quality tested, best prices, fast delivery." />
+  <meta property="og:image" content="Picture/sz logo.png" />
+  <meta property="og:url" content="https://sekhosmartzone.netlify.app" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sekho Smart Zone" />
+  <meta name="twitter:description" content="Your Trusted Store for Mobile Accessories and Electronics" />
+  <meta name="twitter:image" content="Picture/sz logo.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="Picture/sz logo.png" />
+  <link rel="apple-touch-icon" href="Picture/sz logo.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <title>Sekho Smart Zone - Mobile Accessories & Electronics</title>
+
+  <link rel="stylesheet" href="style.css" />
+<base target="_blank">
 </head>
 <body>
-  <header>
-    <h1>
-        <img src="Picture/sz logo.png" alt="Logo"
-     style="height: 35px; vertical-align: middle; margin-right: 8px; filter: brightness(0) invert(1);">
-        Sekho Üsou Smart Zone 
-    </h1>
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="header">
+    <div class="container-custom">
+      <div class="header-inner">
+        <!-- Logo -->
+        <a href="#home" class="logo" onclick="scrollToSection('home')">
+          <div class="logo-icon">
+            <img src="Picture/sz logo.PNG" alt="Sekho Smart Zone Logo">
+          </div>
+          <div class="logo-text">
+            <h1>Sekho Üsou Smart Zone</h1>
+            <p>Your Trusted Store</p>
+          </div>
+        </a>
 
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#products">Products</a>
-      <a href="#contact">Contact</a>
-      <a href="#about">About Us</a>
-      <a href="https://wa.me/?text=Check%20out%20Sekho%20Smart%20Zone!%0Ahttps://sekhosmartzone.netlify.app"
-        target="_blank" rel="noopener" class="share-btn">
-        Share our store
-      </a>
-    </nav>
-</header>
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
+          <a href="#home" class="nav-link active" onclick="scrollToSection('home')">Home</a>
+          <a href="#products" class="nav-link" onclick="scrollToSection('products')">Products</a>
+          <a href="#about" class="nav-link" onclick="scrollToSection('about')">About Us</a>
+          <a href="#contact" class="nav-link" onclick="scrollToSection('contact')">Contact</a>
+        </nav>
 
-  <section id="home" class="hero">
-    <h2>Your Trusted Store</h2>
-    <p>Mobile Accessories and Electronics — affordable, reliable, stylish.</p>
-    <a href="#products" class="btn">Shop Now</a>
+        <!-- Actions -->
+        <div class="header-actions">
+          <button class="btn-share" onclick="shareStore()">
+            <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+            </svg>
+            <span>Share</span>
+          </button>
+
+          <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+            <svg id="menuIcon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="closeIcon" style="display: none;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <nav>
+        <a href="#home" class="nav-link active" onclick="scrollToSection('home')">Home</a>
+        <a href="#products" class="nav-link" onclick="scrollToSection('products')">Products</a>
+        <a href="#about" class="nav-link" onclick="scrollToSection('about')">About Us</a>
+        <a href="#contact" class="nav-link" onclick="scrollToSection('contact')">Contact</a>
+        <button class="mobile-share-btn" onclick="shareStore()">
+          <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+          </svg>
+          Share Store
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero" id="home">
+    <div class="hero-slides">
+      <div class="hero-slide active">
+        <div class="hero-slide-bg gradient-1"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-patterns">
+          <div class="hero-pattern"></div>
+          <div class="hero-pattern"></div>
+          <div class="hero-pattern"></div>
+        </div>
+      </div>
+      <div class="hero-slide">
+        <div class="hero-slide-bg gradient-2"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-patterns">
+          <div class="hero-pattern"></div>
+          <div class="hero-pattern"></div>
+          <div class="hero-pattern"></div>
+        </div>
+      </div>
+      <div class="hero-slide">
+        <div class="hero-slide-bg gradient-3"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-patterns">
+          <div class="hero-pattern"></div>
+          <div class="hero-pattern"></div>
+          <div class="hero-pattern"></div>
+        </div>
+      </div>
+      <div class="hero-slide">
+        <div class="hero-slide-bg gradient-4"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-patterns">
+          <div class="hero-pattern"></div>
+          <div class="hero-pattern"></div>
+          <div class="hero-pattern"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-custom">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+          </svg>
+          <span>Welcome to Sekho Smart Zone</span>
+        </div>
+
+        <div class="hero-slider-content">
+          <div class="hero-slide-content active">
+            <div class="hero-icon">🎧</div>
+            <h2 class="hero-title">Premium Mobile Accessories</h2>
+            <p class="hero-subtitle">Discover top-quality earphones, cables & more</p>
+          </div>
+          <div class="hero-slide-content">
+            <div class="hero-icon">⚡</div>
+            <h2 class="hero-title">Fast Charging Solutions</h2>
+            <p class="hero-subtitle">120W chargers & durable cables for all devices</p>
+          </div>
+          <div class="hero-slide-content">
+            <div class="hero-icon">🔋</div>
+            <h2 class="hero-title">Power Banks & Batteries</h2>
+            <p class="hero-subtitle">Stay powered up wherever you go</p>
+          </div>
+          <div class="hero-slide-content">
+            <div class="hero-icon">🔊</div>
+            <h2 class="hero-title">Wireless Audio Experience</h2>
+            <p class="hero-subtitle">Bluetooth speakers & earphones at best prices</p>
+          </div>
+        </div>
+
+        <div class="hero-cta">
+          <button class="btn-accent" onclick="scrollToSection('products')">
+            <span>Shop Now</span>
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </button>
+          <a href="https://wa.me/919862494804" target="_blank" class="btn-whatsapp">
+            <span>Chat on WhatsApp</span>
+          </a>
+        </div>
+
+        <div class="hero-trust">
+          <div class="trust-item">
+            <div class="trust-icon">✓</div>
+            <span>Quality Tested</span>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">✓</div>
+            <span>Best Prices</span>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">✓</div>
+            <span>Fast Delivery</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-controls">
+      <button class="hero-btn" onclick="prevSlide()" onmouseenter="pauseAutoPlay()" onmouseleave="resumeAutoPlay()">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <div class="hero-dots">
+        <button class="hero-dot active" onclick="goToSlide(0)" onmouseenter="pauseAutoPlay()" onmouseleave="resumeAutoPlay()"></button>
+        <button class="hero-dot" onclick="goToSlide(1)" onmouseenter="pauseAutoPlay()" onmouseleave="resumeAutoPlay()"></button>
+        <button class="hero-dot" onclick="goToSlide(2)" onmouseenter="pauseAutoPlay()" onmouseleave="resumeAutoPlay()"></button>
+        <button class="hero-dot" onclick="goToSlide(3)" onmouseenter="pauseAutoPlay()" onmouseleave="resumeAutoPlay()"></button>
+      </div>
+      <button class="hero-btn" onclick="nextSlide()" onmouseenter="pauseAutoPlay()" onmouseleave="resumeAutoPlay()">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="hero-fade"></div>
   </section>
 
-    <!-- IMAGE SLIDER -->
-    <div class="slider">
-      <div class="slides">
-        <img src="Picture/bluei Earpiece.JPG" alt="Slide 1">
-        <img src="Picture/Mi cable.JPG" alt="Slide 2">
-        <img src="Picture/USB to Lightning.JPG" alt="Slide 3">
-        <img src="Picture/Oneplus Cable.JPG" alt="Slide 4">
-        <img src="Picture/Iphone 11 Battery.JPG" alt="Slide 5">
-      </div>
-      <button class="prev" aria-label="Previous slide">&#10094;</button>
-      <button class="next" aria-label="Next slide">&#10095;</button>
-      <div class="dots"></div>
-    </div>
-
-    <section id="products">
-    <h2>Our Products</h2>
-
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Search products...">
-    </div>
-
-    <!-- FILTER SLIDER -->
-    <div class="filter-wrapper">
-      <div class="filter-buttons" id="filterSlider">
-        <button class="active" onclick="filterProducts('all')">All</button>
-        <button onclick="filterProducts('earpiece')">Earpiece</button>
-        <button onclick="filterProducts('cable')">Cables</button>
-        <button onclick="filterProducts('charger')">Chargers</button>
-        <button onclick="filterProducts('speaker')">Speakers</button>
-        <button onclick="filterProducts('adapter')">Adapters</button>
-        <button onclick="filterProducts('powerbank')">Power Banks</button>
-        <button onclick="filterProducts('battery')">Battery</button>
-        <button onclick="filterProducts('other')">Others</button>
-      </div>
-    </div>
-
-    <div class="product-container" id="productList">
-
-      <div class="product-card" data-category="earpiece" tabindex="0">
-        <img src="Picture/mi_earpiece.WEBP" alt="Mi Earpiece">
-        <h3>Mi Earpiece</h3>
-        <p class="discount">15% OFF</p>
-        <p>₹499.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy Mi earpiece" class="buy-btn" target="_blank">Buy Now</a>
+  <!-- ========== PRODUCTS SECTION ========== -->
+  <section class="products-section section-padding" id="products">
+    <div class="container-custom">
+      <div class="section-header">
+        <span class="section-badge">Our Products</span>
+        <h2 class="section-title">Browse Our Collection</h2>
+        <p class="section-desc">Quality mobile accessories and electronics at affordable prices. Hand-tested before delivery.</p>
       </div>
 
-      <div class="product-card" data-category="charger" tabindex="0">
-        <img src="Picture/120W Mi.JPG" alt="120W Mi Charger">
-        <h3>120W Mi Charger</h3>
-        <p class="discount">56% OFF</p>
-        <p>₹999.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy 120W Mi Charger" class="buy-btn" target="_blank">Buy Now</a>
+      <!-- Search -->
+      <div class="search-wrapper">
+        <input type="text" class="search-input" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()">
       </div>
 
-      <div class="product-card" data-category="cable" tabindex="0">
-        <img src="Picture/25W blackkat.JPG" alt="25W BlackKat Cable">
-        <h3>25W BlackKat Cable</h3>
-        <p>USB-A to Type C</p>
-        <p class="discount">20% OFF</p>
-        <p>₹149.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy 65W Realme Fast Charging Cable" class="buy-btn" target="_blank">Buy Now</a>
+      <!-- Filter Buttons -->
+      <div class="filter-wrapper">
+        <div class="filter-buttons" id="filterSlider">
+          <button class="filter-btn active" onclick="filterProducts('all')">All</button>
+          <button class="filter-btn" onclick="filterProducts('earpiece')">Earpiece</button>
+          <button class="filter-btn" onclick="filterProducts('cable')">Cables</button>
+          <button class="filter-btn" onclick="filterProducts('charger')">Chargers</button>
+          <button class="filter-btn" onclick="filterProducts('speaker')">Speakers</button>
+          <button class="filter-btn" onclick="filterProducts('adapter')">Adapters</button>
+          <button class="filter-btn" onclick="filterProducts('powerbank')">Power Banks</button>
+          <button class="filter-btn" onclick="filterProducts('battery')">Battery</button>
+          <button class="filter-btn" onclick="filterProducts('other')">Others</button>
+        </div>
       </div>
 
-      <div class="product-card" data-category="other" tabindex="0">
-        <img src="Picture/etar aux.JPG" alt="Aux">
-        <h3>AUX</h3>
-        <p class="discount">30% OFF</p>
-        <p>₹149.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy AUX" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="powerbank" tabindex="0">
-        <img src="Picture/mi_powerbank.JPG" alt="Power Bank">
-        <h3>Mi 20000mAh Power Bank</h3>
-        <p class="discount">30% OFF</p>
-        <p>₹2499.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy 20000mAh Power Bank" class="buy-btn" target="_blank">Buy Now</a>
-      </div>      
-
-      <div class="product-card" data-category="charger">
-        <img src="Picture/120W Oppo.JPG" alt="120W Oppo Charger" tabindex="0">
-        <h3>120W Oppo Charger</h3>
-        <p class="discount">56% OFF</p>
-        <p>₹999.00</p>
-        <a href="https://wa.me/919862494804?text=I  want to buy 120W Oppo Charger" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="battery" tabindex="0">
-        <img src="Picture/Bali Battery.JPG" alt="Battery">
-        <h3>Original Battery</h3>
-        <p>Android Battery</p>  
-        <p class="discount">45% OFF</p>
-        <p>₹1199.00 and above</p>
-        <a href="https://wa.me/919862494804?text=I  want to buy Android Battery" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-      
-      <div class="product-card" data-category="charger" tabindex="0">
-        <img src="Picture/85W Realme.JPG" alt="85W Realme Charger">
-        <h3>85W Realme Charger</h3>
-        <p class="discount">60% OFF</p>
-        <p>₹599.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy 85W Realme Charger" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-       <div class="product-card" data-category="speaker" tabindex="0">
-        <img src="https://via.placeholder.com/250" alt="Bluetooth Speaker">
-        <h3>Bluetooth Speaker</h3>
-        <p>₹1499.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy Bluetooth Speaker" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="adapter" tabindex="0">
-        <img src="Picture/25W sm.JPG" alt="25W Samsung Adapter">
-        <h3>25W Samsung Adapter</h3>
-        <p class="discount">25% OFF</p>
-        <p>₹1199.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy 25W Samsung Adapter" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="charger" tabindex="0">
-        <img src="Picture/120W Oneplus.JPG" alt="120W OnePlus Charger">
-        <h3>120W OnePlus Charger</h3>
-        <p class="discount">56% OFF</p>
-        <p>₹999.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy 120W Oneplus Charger" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="cable" tabindex="0">
-        <img src="Picture/C to Lightning Cable.JPG" alt="C to Lightning Cable">
-        <h3>C to Lightning Cable</h3>
-        <p class="discount">60% OFF</p>
-        <p>₹799.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy C to Lightning Cable" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="cable" tabindex="0">
-        <img src="Picture/USB to Lightning.JPG" alt="USB to Lightning Cable">
-        <h3>USB to Lightning Cable</h3>
-        <p class="discount">55% OFF</p>
-        <p>₹699.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy USB to Lightning Cable" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="cable" tabindex="0">
-        <img src="Picture/65W realme cable.JPG" alt="65W Realme Cable">
-        <h3>65W Realme Fast Charging Cable</h3>
-        <p>USB-A to Micro USB</p>
-        <p class="discount">50% OFF</p>
-        <p>₹249.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy 65W Realme Fast Charging Cable" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="adapter" tabindex="0">
-        <img src="Picture/35w_adapter.JPG" alt="35W Apple Adapter">
-        <h3>35W USB C + C Apple Adapter</h3>
-        <p class="discount">40% OFF</p>
-        <p>₹2499.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy 35W Apple Adapter" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="charger" tabindex="0">
-        <img src="Picture/85W Oppo.JPG" alt="85W Oppo Charger">
-        <h3>85W Oppo Charger</h3>
-        <p class="discount">60% OFF</p>
-        <p>₹599.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy 85W Oppo Charger" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="earpiece" tabindex="0">
-        <img src="Picture/bluei earpiece.WEBP" alt="Earpiece">
-        <h3>Earpiece</h3>
-        <p>Bluei Earpiece</p>
-        <p class="discount">20% OFF</p>
-        <p>₹149.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy Bluei Earpiece" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="cable" tabindex="0">
-        <img src="Picture/65W vivo cable.JPG" alt="65W Vivo Cable">
-        <h3>65W Vivo Fast Charging Cable</h3>
-        <p>USB-A to Micro USB</p>
-        <p class="discount">50% OFF</p>
-        <p>₹249.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy 65W Vivo Fast Charging Cable" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="adapter" tabindex="0">
-        <img src="Picture/45W sm.JPG" alt="45W Samsung Adapter">
-        <h3>45W Samsung Adapter</h3>
-        <p class="discount">30% OFF</p>
-        <p>₹2499.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy 45W Samsung Adapter" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="cable" tabindex="0">
-        <img src="Picture/65W mi cable.JPG" alt="65W mi Cable">
-        <h3>65W Mi Fast Charging Cable</h3>
-        <p>USB-A to Micro USB</p>
-        <p class="discount">50% OFF</p>
-        <p>₹249.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy 65W Mi Fast Charging Cable" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="other" tabindex="0">
-        <img src="Picture/lightning to jack.JPG" alt="Lightning to jack">
-        <h3>Lightning to jack</h3>
-        <p>For Iphone</p>
-        <p class="discount">50% OFF</p>
-        <p>₹299.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy Lightning to Jack" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="cable" tabindex="0">
-        <img src="Picture/type c to c.JPG" alt="Type C to C Cable">
-        <h3>Type C to C Fast Charging Cable</h3>
-        <p>Type C to C</p>
-        <p class="discount">60% OFF</p>
-        <p>₹899.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy Type C to C Fast Charging Cable" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="adapter" tabindex="0">
-        <img src="Picture/20w_adapter.PNG" alt="20W Apple Adapter">
-        <h3>20W USB C + C Apple Adapter</h3>
-        <p class="discount">21% OFF</p>
-        <p>₹1499.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy 20W Apple Adapter" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="charger" tabindex="0">
-        <img src="Picture/85W Vivo.JPG" alt="85W Vivo Charger">
-        <h3>85W Vivo Charger</h3>
-        <p class="discount">60% OFF</p>
-        <p>₹599.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy 85W Vivo Charger" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="cable" tabindex="0">
-        <img src="Picture/65W oneplus cable.JPG" alt="65W Oneplus Cable">
-        <h3>65W Oneplus Fast Charging Cable</h3>
-        <p>USB-A to Micro USB</p>
-        <p class="discount">50% OFF</p>
-        <p>₹249.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy 65W Oneplus Fast Charging Cable" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="charger" tabindex="0">
-        <img src="Picture/120W Realme.JPG" alt="120W Realme Charger">
-        <h3>120W Realme Charger</h3>
-        <p class="discount">56% OFF</p>
-        <p>₹999.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy 120W Realme Charger" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="cable" tabindex="0">
-        <img src="Picture/65W oppo cable.JPG" alt="65W Oppo Cable">
-        <h3>65W Oppo Fast Charging Cable</h3>
-        <p>USB-A to Micro USB</p>
-        <p class="discount">50% OFF</p>
-        <p>₹249.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy 65W Oppo Fast Charging Cable" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="battery" tabindex="0">
-        <img src="Picture/Iphone 11 Battery.JPG" alt="Iphone Battery">
-        <h3>Iphone Battery</h3>
-        <p>Iphone 11 Battery</p>  
-        <p class="discount">50% OFF</p>
-        <p>₹1799.00</p>
-        <a href="https://wa.me/919862494804?text=I  want to buy Iphone 11 Battery" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="product-card" data-category="battery" tabindex="0">
-        <img src="Picture/Mobicrown Battery.JPG" alt="Battery">
-        <h3>Battery</h3>
-        <p>Iphone Battery</p>  
-        <p class="discount">40% OFF</p>
-        <p>₹1499.00 and above</p>
-        <a href="https://wa.me/919862494804?text=I want to buy Mobicrown Iphone Battery" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="charger" tabindex="0">
-        <img src="Picture/Etar Charger 2.JPG" alt="Charger">
-        <h3>Charger</h3>
-        <p>Etar Charger</p>  
-        <p class="discount">35% OFF</p>
-        <p>₹299.00</p>
-        <a href="https://wa.me/919862494804?text=I  want to buy Etar Charger 2" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="battery" tabindex="0">
-        <img src="Picture/Bali Battery.JPG" alt="Battery">
-        <h3>Battery</h3>
-        <p>Iphone Battery</p>  
-        <p class="discount">50% OFF</p>
-        <p>₹1499.00 and above</p>
-        <a href="https://wa.me/919862494804?text=I  want to buy Iphone Battery" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="charger" tabindex="0">
-        <img src="Picture/Etar Charger.JPG" alt="Charger">
-        <h3>Charger</h3>
-        <p>Etar Charger</p>  
-        <p class="discount">35% OFF</p>
-        <p>₹299.00</p>
-        <a href="https://wa.me/919862494804?text=I want to buy Etar Charger" class="buy-btn" target="_blank">Buy Now</a>
-      </div>
-
-      <div class="product-card" data-category="battery" tabindex="0">
-        <img src="Picture/Mobicrown Battery.JPG" alt="Battery">
-        <h3>Original Battery</h3>
-        <p>Android Battery</p>  
-        <p class="discount">40% OFF</p>
-        <p>₹1199.00 and above</p>
-        <a href="https://wa.me/919862494804?text=I want to buy Mobicrown Android Battery" class="buy-btn" target="_blank">Buy Now</a>
+      <!-- Products Grid -->
+      <div class="products-grid" id="productList">
+        <!-- Products rendered by JavaScript -->
       </div>
     </div>
   </section>
 
-  <section id="about">
-    <h2>About Us</h2>
-    <p>
-      Sekho Smart Zone is a home-grown store from Chiephobozou, Kohima, Nagaland.  
-      We hand-test every product, keep prices fair, and answer fast on WhatsApp.
-      We also build website.....   
-    </p>
+  <!-- ========== ABOUT SECTION ========== -->
+  <section class="about-section section-padding" id="about">
+    <div class="container-custom">
+      <div class="section-header">
+        <span class="section-badge about-badge">About Us</span>
+        <h2 class="section-title">Your Local Tech Partner</h2>
+        <p class="section-desc">From Chiephobozou to your doorstep — we bring quality mobile accessories and electronics with a personal touch.</p>
+      </div>
+
+      <div class="about-grid">
+        <!-- Left: Story -->
+        <div class="about-content">
+          <div class="about-card">
+            <h3>Our Story</h3>
+            <p><strong>Sekho Smart Zone</strong> is a home-grown store from Chiephobozou, Kohima, Nagaland. What started as a small venture to provide affordable mobile accessories has grown into a trusted name in the region.</p>
+            <p>We believe everyone deserves access to quality technology without breaking the bank. That's why we hand-test every product, keep prices fair, and provide personalized service through WhatsApp.</p>
+            <p>We also build websites! Need an online presence for your shop or dream project? Send us <strong>"Build my site"</strong> on WhatsApp for details about our web development services.</p>
+          </div>
+
+          <div class="contact-cards">
+            <a href="https://wa.me/919862494804" target="_blank" class="contact-card whatsapp">
+              <div class="contact-icon">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+              </div>
+              <div>
+                <p class="contact-info-label">WhatsApp Us</p>
+                <p class="contact-info-value">+91 9862494804</p>
+              </div>
+            </a>
+            <div class="contact-card location">
+              <div class="contact-icon">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <div>
+                <p class="contact-info-label">Visit Us</p>
+                <p class="contact-info-value">Chiephobozou, Kohima, Nagaland</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Features Grid -->
+        <div class="features-grid">
+          <div class="feature-card" style="animation-delay: 0s;">
+            <div class="feature-icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+              </svg>
+            </div>
+            <h4 class="feature-title">Quality Assured</h4>
+            <p class="feature-desc">Every product is hand-tested before delivery</p>
+          </div>
+          <div class="feature-card" style="animation-delay: 0.1s;">
+            <div class="feature-icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+              </svg>
+            </div>
+            <h4 class="feature-title">Best Prices</h4>
+            <p class="feature-desc">Competitive pricing without compromising quality</p>
+          </div>
+          <div class="feature-card" style="animation-delay: 0.2s;">
+            <div class="feature-icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h4 class="feature-title">Fast Response</h4>
+            <p class="feature-desc">Quick replies on WhatsApp for all queries</p>
+          </div>
+          <div class="feature-card" style="animation-delay: 0.3s;">
+            <div class="feature-icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </div>
+            <h4 class="feature-title">Happy Customers</h4>
+            <p class="feature-desc">500+ satisfied customers across Nagaland</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card" style="animation-delay: 0s;">
+          <div class="stat-value">500+</div>
+          <div class="stat-label">Happy Customers</div>
+        </div>
+        <div class="stat-card" style="animation-delay: 0.1s;">
+          <div class="stat-value">1000+</div>
+          <div class="stat-label">Products Sold</div>
+        </div>
+        <div class="stat-card" style="animation-delay: 0.2s;">
+          <div class="stat-value">50+</div>
+          <div class="stat-label">Product Types</div>
+        </div>
+        <div class="stat-card" style="animation-delay: 0.3s;">
+          <div class="stat-value">4.9</div>
+          <div class="stat-label">Average Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>                                                           
+
+  <!-- ========== CONTACT SECTION ========== -->
+  <section class="contact-section section-padding" id="contact">
+    <div class="container-custom">
+      <div class="section-header">
+        <span class="section-badge contact-badge">Get In Touch</span>
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-desc">Have questions? We're here to help! Reach out through any of these channels and we'll get back to you as soon as possible.</p>
+      </div>
+
+      <!-- Contact Methods Grid -->
+      <div class="contact-methods-grid">
+        <a href="https://wa.me/919862494804" target="_blank" class="contact-method-card" style="animation-delay: 0s;">
+          <div class="method-icon whatsapp">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+          </div>
+          <h3 class="method-title">WhatsApp</h3>
+          <p class="method-desc">Fastest way to reach us</p>
+          <div class="method-value">
+            <span>+91 9862494804</span>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/channel/UC1322qkE9Bcjigop3Ik9pYg" target="_blank" class="contact-method-card" style="animation-delay: 0.1s;">
+          <div class="method-icon youtube">
+            <svg fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </div>
+          <h3 class="method-title">YouTube</h3>
+          <p class="method-desc">Watch our latest videos</p>
+          <div class="method-value">
+            <span>Sekho Tech</span>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </div>
+        </a>
+
+        <a href="https://instagram.com/sekho_deals" target="_blank" class="contact-method-card" style="animation-delay: 0.2s;">
+          <div class="method-icon instagram">
+            <svg fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </div>
+          <h3 class="method-title">Instagram</h3>
+          <p class="method-desc">Follow for updates</p>
+          <div class="method-value">
+            <span>@sekho_smart_zone</span>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </div>
+        </a>
+
+        <a href="https://maps.google.com/?q=S.ÜSOU+MOBILE+REPAIRING,+Chiephobozou,Kohima,Nagaland" target="_blank" class="contact-method-card" style="animation-delay: 0.3s;">
+          <div class="method-icon location">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          <h3 class="method-title">Visit Us</h3>
+          <p class="method-desc">Our physical store</p>
+          <div class="method-value">
+            <span>Chiephobozou, Kohima, Nagaland-797105</span>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <!-- Info Cards -->
+      <div class="info-cards-grid">
+        <!-- Business Hours -->
+        <div class="info-card dark">
+          <div class="info-card-header">
+            <div class="info-card-icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3>Business Hours</h3>
+          </div>
+          <div class="hours-list">
+            <div class="hours-item">
+              <span class="hours-label">Monday - Saturday</span>
+              <span class="hours-value">7:00 AM - 7:00 PM</span>
+            </div>
+            <div class="hours-item">
+              <span class="hours-label">WhatsApp Support</span>
+              <span class="hours-value highlight">24/7 Available</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="info-card accent">
+          <div class="info-card-header">
+            <div class="info-card-icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3>Quick Actions</h3>
+          </div>
+          <div class="quick-actions-list">
+            <a href="https://wa.me/919862494804?text=Hi, I want to see your product catalog" target="_blank" class="quick-action">
+              <div class="quick-action-content">
+                <div class="quick-action-icon whatsapp">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                </div>
+                <span>Request Catalog</span>
+              </div>
+              <svg class="arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+            <a href="https://wa.me/919862494804?text=Hi, I need help choosing a product" target="_blank" class="quick-action">
+              <div class="quick-action-content">
+                <div class="quick-action-icon phone">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <span>Get Product Advice</span>
+              </div>
+              <svg class="arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+            <a href="https://wa.me/919862494804?text=Build my site" target="_blank" class="quick-action">
+              <div class="quick-action-content">
+                <div class="quick-action-icon web">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </div>
+                <span>Website Development</span>
+              </div>
+              <svg class="arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+          <!-- Map at bottom of contact -->
+      <div class="contact-map-wrapper" style="margin-top: 3rem;">
+        <div class="map-container">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2975.0880308204078!2d94.1293737!3d25.785121699999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x374623edc2442919%3A0xf1d7df8875972800!2sS.%C3%9CSOU%20MOBILE%20REPAIRING!5e1!3m2!1sen!2sin!4v1776093935811!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            width="100%" 
+            height="400" 
+            style="border:0; border-radius: 16px;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
   </section>
 
-<p style="text-align:center; margin-top:1rem;">
-    Need a website for your own shop or dream project? 
-    Send us “Build my site” on WhatsApp for detailed about the website and the price.
-  </p>
-  <section id="contact">
-   <h2>Contact Us</h2>
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container-custom">
+      <div class="footer-grid">
+        <!-- Brand -->
+        <div class="footer-brand">
+          <a href="#home" class="footer-logo" onclick="scrollToSection('home')">
+            <div class="footer-logo-icon">
+              <img src="Picture/sz logo.PNG" alt="Sekho Smart Zone Logo">
+            </div>
+            <div class="footer-logo-text">
+              <h3>Sekho Smart Zone</h3>
+              <p>Your Trusted Store</p>
+            </div>
+          </a>
+          <p class="footer-desc">Premium mobile accessories and electronics at affordable prices. Hand-tested products with warranty assurance.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/919862494804" target="_blank" class="social-link" aria-label="WhatsApp">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </a>
+            <a href="https://www.youtube.com/channel/UC1322qkE9Bcjigop3Ik9pYg" target="_blank" class="social-link youtube" aria-label="YouTube">
+              <svg fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+            <a href="https://instagram.com/sekho_deals" target="_blank" class="social-link instagram" aria-label="Instagram">
+              <svg fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
 
-  <div class="contact-item">
-    <img src="Picture/logo-whatsapp-png.png" alt="WhatsApp" class="icon">
-    <p>WhatsApp: <a href="https://wa.me/919862494804" target="_blank">Chat Now</a></p>
-  </div>
+        <!-- Quick Links -->
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home" onclick="scrollToSection('home')">Home</a></li>
+            <li><a href="#products" onclick="scrollToSection('products')">Products</a></li>
+            <li><a href="#about" onclick="scrollToSection('about')">About Us</a></li>
+            <li><a href="#contact" onclick="scrollToSection('contact')">Contact</a></li>
+          </ul>
+        </div>
 
-  <div class="contact-item">
-    <img src="Picture/youtube-logo.png" alt="Location" class="icon">
-    <p>Youtube: <a href="https://www.youtube.com/channel/UC1322qkE9Bcjigop3Ik9pYg" target="_blank">Sekho Tech</a></p>
-   </div>
+        <!-- Categories -->
+        <div>
+          <h4 class="footer-title">Categories</h4>
+          <ul class="footer-links">
+            <li><a href="#products" onclick="filterProducts('earpiece'); scrollToSection('products')">Earpiece</a></li>
+            <li><a href="#products" onclick="filterProducts('cable'); scrollToSection('products')">Cables</a></li>
+            <li><a href="#products" onclick="filterProducts('charger'); scrollToSection('products')">Chargers</a></li>
+            <li><a href="#products" onclick="filterProducts('powerbank'); scrollToSection('products')">Power Banks</a></li>
+            <li><a href="#products" onclick="filterProducts('speaker'); scrollToSection('products')">Speakers</a></li>
+            <li><a href="#products" onclick="filterProducts('adapter'); scrollToSection('products')">Adapters</a></li>
+          </ul>
+        </div>
 
-  <div class="contact-item">
-    <img src="Picture/Instagram-Logo-PNG.png" alt="Instagram" class="icon">
-    <p>Instagram: <a href="https://instagram.com/sekho_deals" target="_blank">sekho_smart_zone</a></p>
-  </div>
+        <!-- Contact Info -->
+        <div>
+          <h4 class="footer-title">Contact Us</h4>
+          <div class="footer-contact-item">
+            <p class="footer-contact-label">WhatsApp</p>
+            <a href="https://wa.me/919862494804" target="_blank" class="footer-contact-value">+91 9862494804</a>
+          </div>
+          <div class="footer-contact-item">
+            <p class="footer-contact-label">Address</p>
+            <p class="footer-contact-value">Chiephobozou, Kohima, Nagaland - 797105</p>
+          </div>
+          <div class="footer-contact-item">
+            <p class="footer-contact-label">Business Hours</p>
+            <p class="footer-contact-value">Mon-Sat: 9AM - 7PM</p>
+          </div>
+        </div>
+      </div>
 
-  <div class="contact-item">
-    <img src="Picture/Location_png.png" alt="Location" class="icon">
-    <p>Address: Chiephobozou, Kohima, Nagaland</p>
-   </div>
-
-  </section>
-
-  <footer>
-    <p>© 2025 Sekho Üsou Smart Zone | All Rights Reserved</p>
-    <p>𝒟𝑒𝓈𝒾𝑔𝓃 𝒶𝓃𝒹 𝒟𝑒𝓋𝑒𝓁𝑜𝓅𝑒𝒹 𝐵𝓎 𝒮𝑒𝓀𝒽𝑜 Ü𝓈𝑜𝓊</p>
+      <div class="footer-bottom">
+        <div class="footer-bottom-content">
+          <p class="footer-copyright">© 2026 Sekho Smart Zone. All Rights Reserved.</p>
+          <p class="footer-credit">𝒟𝑒𝓈𝒾𝑔𝓃 𝒶𝓃𝒹 𝒟𝑒𝓋𝑒𝓁𝑜𝓅𝑒𝒹 𝐵𝓎 𝒮𝑒𝓀𝒽𝑜 Ü𝓈𝑜𝓊</p>
+          <button class="scroll-top-btn" onclick="scrollToTop()" aria-label="Scroll to top">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
   </footer>
 
   <script src="script.js"></script>

@@ -1,176 +1,293 @@
-// product.js - Product Detail Page Logic
+// ========== PRODUCT DATA ==========
+const products = [
+  { id: 1, title: 'Mi Earpiece', price: 499, originalPrice: 587, discount: '15% OFF', category: 'earpiece', image: 'Picture/mi_earpiece.WEBP', stock: 'in', whatsappText: 'I want to buy Mi earpiece' },
+  { id: 2, title: '120W Mi Charger', price: 999, originalPrice: 2270, discount: '56% OFF', category: 'charger', image: 'Picture/120W Mi.JPG', stock: 'in', whatsappText: 'I want to buy 120W Mi Charger' },
+  { id: 3, title: '25W BlackKat Cable', price: 149, originalPrice: 186, discount: '20% OFF', category: 'cable', image: 'Picture/25W blackkat.JPG', stock: 'in', whatsappText: 'I want to buy 25W BlackKat Cable', desc: 'USB-A to Type C' },
+  { id: 4, title: 'AUX Cable', price: 149, originalPrice: 213, discount: '30% OFF', category: 'other', image: 'Picture/etar aux.JPG', stock: 'in', whatsappText: 'I want to buy AUX' },
+  { id: 5, title: 'Mi 20000mAh Power Bank', price: 2499, originalPrice: 3570, discount: '30% OFF', category: 'powerbank', image: 'Picture/mi_powerbank.JPG', stock: 'in', whatsappText: 'I want to buy 20000mAh Power Bank' },
+  { id: 6, title: '120W Oppo Charger', price: 999, originalPrice: 2270, discount: '56% OFF', category: 'charger', image: 'Picture/120W Oppo.JPG', stock: 'in', whatsappText: 'I want to buy 120W Oppo Charger' },
+  { id: 7, title: 'Original Android Battery', price: 1199, originalPrice: 2180, discount: '45% OFF', category: 'battery', image: 'Picture/Bali Battery.JPG', stock: 'in', whatsappText: 'I want to buy Android Battery', desc: 'Android Battery' },
+  { id: 8, title: '85W Realme Charger', price: 599, originalPrice: 1498, discount: '60% OFF', category: 'charger', image: 'Picture/85W Realme.JPG', stock: 'in', whatsappText: 'I want to buy 85W Realme Charger' },
+  { id: 9, title: 'Bluetooth Speaker', price: 1499, originalPrice: 1999, discount: '25% OFF', category: 'speaker', image: 'https://via.placeholder.com/300', stock: 'limited', whatsappText: 'I want to buy Bluetooth Speaker' },
+  { id: 10, title: '25W Samsung Adapter', price: 1199, originalPrice: 1599, discount: '25% OFF', category: 'adapter', image: 'Picture/25W sm.JPG', stock: 'in', whatsappText: 'I want to buy 25W Samsung Adapter' },
+  { id: 11, title: '120W OnePlus Charger', price: 999, originalPrice: 2270, discount: '56% OFF', category: 'charger', image: 'Picture/120W Oneplus.JPG', stock: 'in', whatsappText: 'I want to buy 120W Oneplus Charger' },
+  { id: 12, title: 'C to Lightning Cable', price: 799, originalPrice: 1998, discount: '60% OFF', category: 'cable', image: 'Picture/C to Lightning Cable.JPG', stock: 'in', whatsappText: 'I want to buy C to Lightning Cable' },
+  { id: 13, title: 'USB to Lightning Cable', price: 699, originalPrice: 1553, discount: '55% OFF', category: 'cable', image: 'Picture/USB to Lightning.JPG', stock: 'in', whatsappText: 'I want to buy USB to Lightning Cable' },
+  { id: 14, title: '65W Realme Fast Charging Cable', price: 249, originalPrice: 498, discount: '50% OFF', category: 'cable', image: 'Picture/65W realme cable.JPG', stock: 'in', whatsappText: 'I want to buy 65W Realme Fast Charging Cable', desc: 'USB-A to Micro USB' },
+  { id: 15, title: '35W Apple Adapter', price: 2499, originalPrice: 4165, discount: '40% OFF', category: 'adapter', image: 'Picture/35w_adapter.JPG', stock: 'in', whatsappText: 'I want to buy 35W Apple Adapter', desc: 'USB C + C' },
+  { id: 16, title: '85W Oppo Charger', price: 599, originalPrice: 1498, discount: '60% OFF', category: 'charger', image: 'Picture/85W Oppo.JPG', stock: 'in', whatsappText: 'I want to buy 85W Oppo Charger' },
+  { id: 17, title: 'Bluei Earpiece', price: 149, originalPrice: 186, discount: '20% OFF', category: 'earpiece', image: 'Picture/bluei earpiece.WEBP', stock: 'in', whatsappText: 'I want to buy Bluei Earpiece', desc: 'Bluei Earpiece' },
+  { id: 18, title: '65W Vivo Fast Charging Cable', price: 249, originalPrice: 498, discount: '50% OFF', category: 'cable', image: 'Picture/65W vivo cable.JPG', stock: 'in', whatsappText: 'I want to buy 65W Vivo Fast Charging Cable', desc: 'USB-A to Micro USB' },
+  { id: 19, title: '45W Samsung Adapter', price: 2499, originalPrice: 3570, discount: '30% OFF', category: 'adapter', image: 'Picture/45W sm.JPG', stock: 'in', whatsappText: 'I want to buy 45W Samsung Adapter' },
+  { id: 20, title: '65W Mi Fast Charging Cable', price: 249, originalPrice: 498, discount: '50% OFF', category: 'cable', image: 'Picture/65W mi cable.JPG', stock: 'in', whatsappText: 'I want to buy 65W Mi Fast Charging Cable', desc: 'USB-A to Micro USB' },
+  { id: 21, title: 'Lightning to Jack', price: 299, originalPrice: 598, discount: '50% OFF', category: 'other', image: 'Picture/lightning to jack.JPG', stock: 'in', whatsappText: 'I want to buy Lightning to Jack', desc: 'For iPhone' },
+  { id: 22, title: 'Type C to C Fast Charging Cable', price: 899, originalPrice: 2248, discount: '60% OFF', category: 'cable', image: 'Picture/type c to c.JPG', stock: 'in', whatsappText: 'I want to buy Type C to C Fast Charging Cable', desc: 'Type C to C' },
+  { id: 23, title: '20W Apple Adapter', price: 1499, originalPrice: 1897, discount: '21% OFF', category: 'adapter', image: 'Picture/20w_adapter.PNG', stock: 'in', whatsappText: 'I want to buy 20W Apple Adapter', desc: 'USB C + C' },
+  { id: 24, title: '85W Vivo Charger', price: 599, originalPrice: 1498, discount: '60% OFF', category: 'charger', image: 'Picture/85W Vivo.JPG', stock: 'in', whatsappText: 'I want to buy 85W Vivo Charger' },
+  { id: 25, title: '65W Oneplus Fast Charging Cable', price: 249, originalPrice: 498, discount: '50% OFF', category: 'cable', image: 'Picture/65W oneplus cable.JPG', stock: 'in', whatsappText: 'I want to buy 65W Oneplus Fast Charging Cable', desc: 'USB-A to Micro USB' },
+  { id: 26, title: '120W Realme Charger', price: 999, originalPrice: 2270, discount: '56% OFF', category: 'charger', image: 'Picture/120W Realme.JPG', stock: 'in', whatsappText: 'I want to buy 120W Realme Charger' },
+  { id: 27, title: '65W Oppo Fast Charging Cable', price: 249, originalPrice: 498, discount: '50% OFF', category: 'cable', image: 'Picture/65W oppo cable.JPG', stock: 'in', whatsappText: 'I want to buy 65W Oppo Fast Charging Cable', desc: 'USB-A to Micro USB' },
+  { id: 28, title: 'iPhone 11 Battery', price: 1799, originalPrice: 3598, discount: '50% OFF', category: 'battery', image: 'Picture/Iphone 11 Battery.JPG', stock: 'in', whatsappText: 'I want to buy iPhone 11 Battery', desc: 'iPhone 11 Battery' },
+  { id: 29, title: 'Mobicrown iPhone Battery', price: 1499, originalPrice: 2498, discount: '40% OFF', category: 'battery', image: 'Picture/Mobicrown Battery.JPG', stock: 'in', whatsappText: 'I want to buy Mobicrown iPhone Battery', desc: 'iPhone Battery' },
+  { id: 30, title: 'Etar Charger 2', price: 299, originalPrice: 460, discount: '35% OFF', category: 'charger', image: 'Picture/Etar Charger 2.JPG', stock: 'in', whatsappText: 'I want to buy Etar Charger 2', desc: 'Etar Charger' },
+  { id: 31, title: 'Bali iPhone Battery', price: 1499, originalPrice: 2998, discount: '50% OFF', category: 'battery', image: 'Picture/Bali Battery.JPG', stock: 'in', whatsappText: 'I want to buy Bali iPhone Battery', desc: 'iPhone Battery' },
+  { id: 32, title: 'Etar Charger', price: 299, originalPrice: 460, discount: '35% OFF', category: 'charger', image: 'Picture/Etar Charger.JPG', stock: 'in', whatsappText: 'I want to buy Etar Charger', desc: 'Etar Charger' },
+  { id: 33, title: 'Mobicrown Android Battery', price: 1199, originalPrice: 1998, discount: '40% OFF', category: 'battery', image: 'Picture/Mobicrown Battery.JPG', stock: 'in', whatsappText: 'I want to buy Mobicrown Android Battery', desc: 'Android Battery' }
+];
 
+// ========== STATE ==========
+let currentSlide = 0;
+let isAutoPlaying = true;
+let autoPlayInterval;
+let currentFilter = 'all';
+
+// ========== INITIALIZATION ==========
 document.addEventListener('DOMContentLoaded', () => {
-  loadProductDetails();
-  loadRelatedProducts();
+  renderProducts();
+  startAutoPlay();
+  setupHeaderScroll();
+  setupFilterDrag();
+  setupScrollAnimations();
 });
 
-/* ---------- LOAD PRODUCT FROM URL PARAMS ---------- */
-function loadProductDetails() {
-  const params = new URLSearchParams(window.location.search);
-  
-  // Extract data from URL
-  const name = params.get('name') || 'Product Name';
-  const price = params.get('price') || '0';
-  const discount = params.get('disc') || '';
-  const image = params.get('img') || 'Picture/placeholder.jpg';
-  const description = params.get('desc') || '';
-  const whatsappUrl = params.get('url') || '#';
-  const category = params.get('cat') || 'all';
-  
-  // Populate DOM
-  document.getElementById('detailName').textContent = name;
-  document.getElementById('detailPrice').textContent = '₹' + price;
-  document.getElementById('detailDisc').textContent = discount;
-  document.getElementById('detailBuy').href = whatsappUrl;
-  
-  // Main image
-  const mainImg = document.getElementById('detailMain');
-  mainImg.src = image;
-  mainImg.alt = name;
-  
-  // Thumbnail strip - since no admin, create single thumb or multiple if available
-  const thumbStrip = document.getElementById('thumbStrip');
-  
-  // For demo purposes, show the main image as thumbnail
-  // In a real scenario with multiple images, you'd pass them as img1, img2, etc.
-  const thumbs = [image]; // Could expand to [image, image2, image3] if available
-  
-  if (thumbs.length > 1) {
-    thumbs.forEach((thumbSrc, index) => {
-      const img = document.createElement('img');
-      img.src = thumbSrc;
-      img.className = index === 0 ? 'active' : '';
-      img.onclick = () => {
-        mainImg.src = thumbSrc;
-        document.querySelectorAll('.thumb-strip img').forEach(t => t.classList.remove('active'));
-        img.classList.add('active');
-      };
-      thumbStrip.appendChild(img);
-    });
+// ========== HEADER FUNCTIONS ==========
+function setupHeaderScroll() {
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }, { passive: true });
+}
+
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const menuIcon = document.getElementById('menuIcon');
+  const closeIcon = document.getElementById('closeIcon');
+
+  menu.classList.toggle('open');
+  if (menu.classList.contains('open')) {
+    menuIcon.style.display = 'none';
+    closeIcon.style.display = 'block';
   } else {
-    // If only one image, hide thumbnail strip or show single thumb
-    thumbStrip.style.display = 'none';
+    menuIcon.style.display = 'block';
+    closeIcon.style.display = 'none';
   }
 }
 
-/* ---------- RELATED PRODUCTS (HARDCODED - NO ADMIN) ---------- */
-// Sample products from your existing inventory
-const relatedInventory = [
-  {
-    name: 'Mi Earpiece',
-    price: '499',
-    image: 'Picture/mi_earpiece.WEBP',
-    cat: 'earpiece',
-    url: 'https://wa.me/919862494804?text=I want to buy Mi earpiece'
-  },
-  {
-    name: '120W Mi Charger',
-    price: '999',
-    image: 'Picture/120W Mi.JPG',
-    cat: 'charger',
-    url: 'https://wa.me/919862494804?text=I want to buy 120W Mi Charger'
-  },
-  {
-    name: 'Mi 20000mAh Power Bank',
-    price: '2499',
-    image: 'Picture/mi_powerbank.JPG',
-    cat: 'powerbank',
-    url: 'https://wa.me/919862494804?text=I want to buy 20000mAh Power Bank'
-  },
-  {
-    name: '25W Samsung Adapter',
-    price: '1199',
-    image: 'Picture/25W sm.JPG',
-    cat: 'adapter',
-    url: 'https://wa.me/919862494804?text=I want to buy 25W Samsung Adapter'
-  },
-  {
-    name: 'Bluei Earpiece',
-    price: '149',
-    image: 'Picture/bluei earpiece.WEBP',
-    cat: 'earpiece',
-    url: 'https://wa.me/919862494804?text=I want to buy Bluei Earpiece'
-  },
-  {
-    name: '65W Realme Cable',
-    price: '249',
-    image: 'Picture/65W realme cable.JPG',
-    cat: 'cable',
-    url: 'https://wa.me/919862494804?text=I want to buy 65W Realme Fast Charging Cable'
-  }
-];
+function scrollToSection(sectionId) {
+  const element = document.getElementById(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
 
-function loadRelatedProducts() {
-  const params = new URLSearchParams(window.location.search);
-  const currentCat = params.get('cat') || 'all';
-  const currentName = params.get('name') || '';
-  
-  const wrapper = document.getElementById('miniWrapper');
-  if (!wrapper) return;
-  
-  // Filter related products by same category, exclude current product
-  let related = relatedInventory.filter(p => 
-    p.cat === currentCat && p.name !== currentName
-  );
-  
-  // If no same-category items or too few, fill with random others
-  if (related.length < 4) {
-    const others = relatedInventory.filter(p => 
-      p.name !== currentName && !related.includes(p)
-    );
-    related = related.concat(others).slice(0, 6);
+    // Update active nav
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + sectionId) {
+        link.classList.add('active');
+      }
+    });
+
+    // Close mobile menu
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('menuIcon').style.display = 'block';
+    document.getElementById('closeIcon').style.display = 'none';
   }
-  
-  // Build HTML
-  wrapper.innerHTML = related.map(product => `
-    <div class="mini-card" onclick="navigateToProduct('${encodeURIComponent(product.name)}', '${product.price}', '${product.cat}', '${product.image}', '${encodeURIComponent(product.url)}')">
-      <img src="${product.image}" alt="${product.name}" loading="lazy">
-      <p>${product.name}</p>
-      <p style="color:#e63946;font-weight:700">₹${product.price}</p>
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function shareStore() {
+  const shareData = {
+    title: 'Sekho Smart Zone',
+    text: 'Check out Sekho Smart Zone - Mobile Accessories and Electronics!',
+    url: window.location.origin
+  };
+
+  if (navigator.share) {
+    navigator.share(shareData);
+  } else {
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareData.text + '\n' + shareData.url)}`;
+    window.open(whatsappUrl, '_blank');
+  }
+}
+
+// ========== HERO SLIDER ==========
+function showSlide(index) {
+  const slides = document.querySelectorAll('.hero-slide');
+  const contents = document.querySelectorAll('.hero-slide-content');
+  const dots = document.querySelectorAll('.hero-dot');
+
+  slides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === index);
+  });
+
+  contents.forEach((content, i) => {
+    content.classList.toggle('active', i === index);
+  });
+
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === index);
+  });
+
+  currentSlide = index;
+}
+
+function nextSlide() {
+  showSlide((currentSlide + 1) % 4);
+}
+
+function prevSlide() {
+  showSlide((currentSlide - 1 + 4) % 4);
+}
+
+function goToSlide(index) {
+  showSlide(index);
+}
+
+function startAutoPlay() {
+  autoPlayInterval = setInterval(nextSlide, 5000);
+}
+
+function pauseAutoPlay() {
+  clearInterval(autoPlayInterval);
+}
+
+function resumeAutoPlay() {
+  if (isAutoPlaying) {
+    startAutoPlay();
+  }
+}
+
+// ========== PRODUCTS FUNCTIONS ==========
+function renderProducts(filter = 'all', searchTerm = '') {
+  const container = document.getElementById('productList');
+  let filtered = products;
+
+  if (filter !== 'all') {
+    filtered = filtered.filter(p => p.category === filter);
+  }
+
+  if (searchTerm) {
+    filtered = filtered.filter(p => 
+      p.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      p.category.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }
+
+  container.innerHTML = filtered.map(product => `
+    <div class="product-card" data-category="${product.category}">
+      <div class="product-image-wrapper">
+        <img src="${product.image}" alt="${product.title}" class="product-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300'">
+        ${product.discount ? `<span class="product-discount">${product.discount}</span>` : ''}
+        <span class="product-stock ${product.stock}">${product.stock === 'in' ? 'In Stock' : product.stock === 'limited' ? 'Limited' : 'Out of Stock'}</span>
+      </div>
+      <div class="product-info">
+        <p class="product-category">${product.category}</p>
+        <h3 class="product-title">${product.title}</h3>
+        ${product.desc ? `<p class="product-desc">${product.desc}</p>` : ''}
+        <div class="product-price-row">
+          <div class="product-price">
+            <span class="current-price">₹${product.price}</span>
+            ${product.originalPrice ? `<span class="original-price">₹${product.originalPrice}</span>` : ''}
+          </div>
+        </div>
+        <a href="https://wa.me/919862494804?text=${encodeURIComponent(product.whatsappText)}" target="_blank" class="product-buy-btn">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          Buy Now
+        </a>
+      </div>
     </div>
   `).join('');
 }
 
-/* ---------- NAVIGATE TO ANOTHER PRODUCT ---------- */
-function navigateToProduct(name, price, cat, img, url) {
-  const params = new URLSearchParams({
-    name: decodeURIComponent(name),
-    price: price,
-    cat: cat,
-    img: img,
-    url: decodeURIComponent(url)
+function filterProducts(category) {
+  currentFilter = category;
+
+  // Update button states
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.remove('active');
+    const btnText = btn.textContent.toLowerCase();
+    if ((category === 'all' && btn.textContent === 'All') ||
+        (category === 'earpiece' && btnText.includes('earpiece')) ||
+        (category === 'cable' && btnText.includes('cable')) ||
+        (category === 'charger' && btnText.includes('charger')) ||
+        (category === 'speaker' && btnText.includes('speaker')) ||
+        (category === 'adapter' && btnText.includes('adapter')) ||
+        (category === 'powerbank' && btnText.includes('power')) ||
+        (category === 'battery' && btnText.includes('battery')) ||
+        (category === 'other' && btnText.includes('other'))) {
+      btn.classList.add('active');
+    }
   });
-  
-  window.location.href = 'product.html?' + params.toString();
+
+  const searchTerm = document.getElementById('searchInput').value;
+  renderProducts(category, searchTerm);
 }
 
-/* ---------- DRAGGABLE MINI SLIDER ---------- */
-const miniWrapper = document.getElementById('miniWrapper');
-if (miniWrapper) {
-  let down = false;
+function searchProducts() {
+  const searchTerm = document.getElementById('searchInput').value;
+  renderProducts(currentFilter, searchTerm);
+}
+
+function setupFilterDrag() {
+  const slider = document.getElementById('filterSlider');
+  let isDown = false;
   let startX;
   let scrollLeft;
 
-  miniWrapper.addEventListener('mousedown', (e) => {
-    down = true;
-    startX = e.pageX - miniWrapper.offsetLeft;
-    scrollLeft = miniWrapper.scrollLeft;
+  slider.addEventListener('mousedown', (e) => {
+    isDown = true;
+    slider.style.cursor = 'grabbing';
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
   });
 
-  miniWrapper.addEventListener('mouseleave', () => {
-    down = false;
+  slider.addEventListener('mouseleave', () => {
+    isDown = false;
+    slider.style.cursor = 'grab';
   });
 
-  miniWrapper.addEventListener('mouseup', () => {
-    down = false;
+  slider.addEventListener('mouseup', () => {
+    isDown = false;
+    slider.style.cursor = 'grab';
   });
 
-  miniWrapper.addEventListener('mousemove', (e) => {
-    if (!down) return;
+  slider.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
     e.preventDefault();
-    const x = e.pageX - miniWrapper.offsetLeft;
+    const x = e.pageX - slider.offsetLeft;
     const walk = (x - startX) * 2;
-    miniWrapper.scrollLeft = scrollLeft - walk;
+    slider.scrollLeft = scrollLeft - walk;
+  });
+}
+
+// ========== SCROLL ANIMATIONS ==========
+function setupScrollAnimations() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.feature-card, .stat-card, .contact-method-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
   });
 }
