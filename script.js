@@ -40,6 +40,8 @@ let currentSlide = 0;
 let isAutoPlaying = true;
 let autoPlayInterval;
 let currentFilter = 'all';
+let touchStartX = 0;
+let touchEndX = 0;
 
 // ========== INITIALIZATION ==========
 document.addEventListener('DOMContentLoaded', () => {
@@ -48,6 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
   setupHeaderScroll();
   setupFilterDrag();
   setupScrollAnimations();
+  setupHeroTouchSwipe();
+  setupProductCardTouch();
 });
 
 // ========== HEADER FUNCTIONS ==========
@@ -163,6 +167,36 @@ function resumeAutoPlay() {
   }
 }
 
+// ========== HERO TOUCH SWIPE ==========
+function setupHeroTouchSwipe() {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  hero.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    pauseAutoPlay();
+  }, { passive: true });
+
+  hero.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleHeroSwipe();
+    resumeAutoPlay();
+  }, { passive: true });
+}
+
+function handleHeroSwipe() {
+  const swipeThreshold = 50;
+  const diff = touchStartX - touchEndX;
+
+  if (Math.abs(diff) > swipeThreshold) {
+    if (diff > 0) {
+      nextSlide();
+    } else {
+      prevSlide();
+    }
+  }
+}
+
 // ========== PRODUCTS FUNCTIONS ==========
 function renderProducts(filter = 'all', searchTerm = '') {
   const container = document.getElementById('productList');
@@ -266,6 +300,45 @@ function setupFilterDrag() {
     const walk = (x - startX) * 2;
     slider.scrollLeft = scrollLeft - walk;
   });
+
+  // Touch support for filter slider
+  slider.addEventListener('touchstart', (e) => {
+    isDown = true;
+    startX = e.touches[0].pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+  }, { passive: true });
+
+  slider.addEventListener('touchend', () => {
+    isDown = false;
+  }, { passive: true });
+
+  slider.addEventListener('touchmove', (e) => {
+    if (!isDown) return;
+    const x = e.touches[0].pageX - slider.offsetLeft;
+    const walk = (x - startX) * 2;
+    slider.scrollLeft = scrollLeft - walk;
+  }, { passive: true });
+}
+
+// ========== PRODUCT CARD TOUCH ==========
+function setupProductCardTouch() {
+  const productList = document.getElementById('productList');
+  if (!productList) return;
+
+  // Add touch feedback for product cards
+  productList.addEventListener('touchstart', (e) => {
+    const card = e.target.closest('.product-card');
+    if (card) {
+      card.style.transform = 'scale(0.98)';
+    }
+  }, { passive: true });
+
+  productList.addEventListener('touchend', (e) => {
+    const card = e.target.closest('.product-card');
+    if (card) {
+      card.style.transform = '';
+    }
+  }, { passive: true });
 }
 
 // ========== SCROLL ANIMATIONS ==========

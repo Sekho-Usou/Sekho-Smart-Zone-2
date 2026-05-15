@@ -452,7 +452,6 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
-
 /* ========== HERO SECTION ========== */
 .hero {
   position: relative;
@@ -870,16 +869,37 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 4px 15px rgba(15, 23, 42, 0.25);
 }
 
-/* Product Grid */
+/* ============================================ */
+/* PHONE VIEW: 2 PRODUCTS PER ROW (FLIPKART STYLE) */
+/* ============================================ */
+
+/* Default: 2 columns for phone */
 .products-grid {
   display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.75rem;
+  grid-template-columns: repeat(2, 1fr);
 }
 
+/* Tablet: 3 columns */
+@media (min-width: 640px) {
+  .products-grid {
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Desktop: 4 columns */
+@media (min-width: 1024px) {
+  .products-grid {
+    gap: 1.5rem;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Product Card - Compact for phone */
 .product-card {
   background: white;
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   border: 1px solid #f1f5f9;
@@ -887,15 +907,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15);
 }
 
+/* Product Image - Smaller on phone */
 .product-image-wrapper {
   position: relative;
   aspect-ratio: 1;
   overflow: hidden;
   background: #f8fafc;
+}
+
+@media (min-width: 768px) {
+  .product-image-wrapper {
+    aspect-ratio: 1;
+  }
 }
 
 .product-image {
@@ -909,26 +936,46 @@ h1, h2, h3, h4, h5, h6 {
   transform: scale(1.05);
 }
 
+/* Discount Badge - Smaller on phone */
 .product-discount {
   position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
-  padding: 0.25rem 0.75rem;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.15rem 0.5rem;
   background: linear-gradient(135deg, #ef4444, #dc2626);
   color: white;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 700;
   border-radius: 9999px;
 }
 
+@media (min-width: 768px) {
+  .product-discount {
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Stock Badge */
 .product-stock {
   position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.65rem;
   font-weight: 600;
   border-radius: 9999px;
+}
+
+@media (min-width: 768px) {
+  .product-stock {
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+  }
 }
 
 .product-stock.in {
@@ -946,72 +993,143 @@ h1, h2, h3, h4, h5, h6 {
   color: #991b1b;
 }
 
+/* Product Info - Compact padding on phone */
 .product-info {
-  padding: 1.25rem;
+  padding: 0.75rem;
 }
 
+@media (min-width: 768px) {
+  .product-info {
+    padding: 1.25rem;
+  }
+}
+
+/* Category Label - Smaller on phone */
 .product-category {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--brand-accent);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
+@media (min-width: 768px) {
+  .product-category {
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Product Title - Smaller on phone, 2 line clamp */
 .product-title {
-  font-size: 1.125rem;
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: 600;
   color: var(--brand-primary);
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.4em;
 }
 
+@media (min-width: 768px) {
+  .product-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    min-height: auto;
+  }
+}
+
+/* Product Description - Hidden on phone */
 .product-desc {
-  font-size: 0.875rem;
-  color: #64748b;
-  margin-bottom: 1rem;
-  line-height: 1.5;
+  display: none;
 }
 
+@media (min-width: 768px) {
+  .product-desc {
+    display: block;
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+}
+
+/* Price Row - Compact on phone */
 .product-price-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .product-price-row {
+    margin-bottom: 1rem;
+  }
 }
 
 .product-price {
   display: flex;
   align-items: baseline;
-  gap: 0.5rem;
+  gap: 0.35rem;
+  flex-wrap: wrap;
 }
 
+/* Current Price - Smaller on phone */
 .current-price {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 800;
   color: var(--brand-primary);
 }
 
+@media (min-width: 768px) {
+  .current-price {
+    font-size: 1.5rem;
+  }
+}
+
+/* Original Price - Smaller on phone */
 .original-price {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: #94a3b8;
   text-decoration: line-through;
 }
 
+@media (min-width: 768px) {
+  .original-price {
+    font-size: 0.875rem;
+  }
+}
+
+/* Buy Button - Compact on phone */
 .product-buy-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.35rem;
   width: 100%;
-  padding: 0.875rem;
+  padding: 0.6rem;
   background: linear-gradient(135deg, #22c55e, #16a34a);
   color: white;
   font-weight: 600;
-  border-radius: 0.75rem;
+  font-size: 0.8rem;
+  border-radius: 0.5rem;
   text-decoration: none;
   transition: all 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .product-buy-btn {
+    padding: 0.875rem;
+    font-size: 1rem;
+    border-radius: 0.75rem;
+    gap: 0.5rem;
+  }
 }
 
 .product-buy-btn:hover {
@@ -1021,8 +1139,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .product-buy-btn svg {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (min-width: 768px) {
+  .product-buy-btn svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
 }
 
 /* ========== ABOUT SECTION ========== */
@@ -1261,7 +1386,7 @@ h1, h2, h3, h4, h5, h6 {
   .map-section {
     padding: 0 0 2rem 0;
   }
-  
+
   .map-container {
     width: 95%;
     height: 250px; /* Smaller on tablet */
@@ -1633,7 +1758,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 3.5rem;
     height: 3.5rem;
   }
-  
+
   .footer-logo-text h3 {
     font-size: 1.5rem;
   }
@@ -1665,7 +1790,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 3.5rem;
     height: 3.5rem;
   }
-  
+
   .logo-icon {
     width: 3rem;
     height: 3rem;
@@ -1822,4 +1947,240 @@ h1, h2, h3, h4, h5, h6 {
 .scroll-top-btn svg {
   width: 1.25rem;
   height: 1.25rem;
+}
+
+/* ========== ADDITIONAL PHONE FIXES ========== */
+
+/* Fix header logo text truncation on small screens */
+@media (max-width: 480px) {
+  .logo-text h1 {
+    font-size: 0.9rem;
+  }
+
+  .logo-text p {
+    font-size: 0.65rem;
+  }
+
+  .logo-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+/* Fix hero section on phone */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .hero-icon {
+    font-size: 3rem;
+  }
+
+  .hero-slider-content {
+    height: 180px;
+  }
+
+  .hero-badge {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  .btn-accent, .btn-whatsapp {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .trust-item {
+    font-size: 0.75rem;
+  }
+
+  .hero-controls {
+    bottom: 1rem;
+  }
+
+  .hero-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+/* Fix contact cards on phone */
+@media (max-width: 480px) {
+  .contact-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .stat-card {
+    padding: 1rem;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+}
+
+/* Fix filter buttons scroll on phone */
+@media (max-width: 480px) {
+  .filter-buttons {
+    gap: 0.5rem;
+    padding: 0.5rem 0 0.75rem;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .section-desc {
+    font-size: 0.9rem;
+  }
+}
+
+/* Fix about section on phone */
+@media (max-width: 480px) {
+  .about-card {
+    padding: 1.25rem;
+  }
+
+  .about-card h3 {
+    font-size: 1.25rem;
+  }
+
+  .about-card p {
+    font-size: 0.85rem;
+  }
+}
+
+/* Fix contact methods on phone */
+@media (max-width: 480px) {
+  .contact-methods-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .contact-method-card {
+    padding: 1.25rem;
+  }
+
+  .method-title {
+    font-size: 1.1rem;
+  }
+
+  .method-value span {
+    font-size: 0.85rem;
+  }
+}
+
+/* Fix info cards on phone */
+@media (max-width: 480px) {
+  .info-card {
+    padding: 1.25rem;
+  }
+
+  .quick-action {
+    padding: 0.75rem;
+  }
+
+  .quick-action span {
+    font-size: 0.85rem;
+  }
+
+  .hours-item {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
+
+/* Fix footer on phone */
+@media (max-width: 480px) {
+  .footer-grid {
+    gap: 1.5rem;
+    padding: 2.5rem 0;
+  }
+
+  .footer-title {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-links a {
+    font-size: 0.8rem;
+  }
+
+  .footer-contact-value {
+    font-size: 0.8rem;
+  }
+
+  .footer-desc {
+    font-size: 0.8rem;
+  }
+
+  .footer-copyright,
+  .footer-credit {
+    font-size: 0.75rem;
+  }
+}
+
+/* Fix map on phone */
+.contact-map-wrapper {
+  margin-top: 2rem;
+  padding: 0 0.5rem;
+}
+
+@media (max-width: 480px) {
+  .contact-map-wrapper {
+    margin-top: 1.5rem;
+    padding: 0;
+  }
+
+  .contact-map-wrapper iframe {
+    border-radius: 0.5rem;
+  }
+}
+
+/* Smooth scrolling for filter buttons */
+.filter-buttons {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Prevent text selection during drag */
+.filter-buttons {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Improve touch targets on mobile */
+@media (max-width: 768px) {
+  .filter-btn,
+  .product-buy-btn,
+  .hero-dot,
+  .hero-btn {
+    min-height: 44px;
+  }
+
+  .nav-link {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
 }
