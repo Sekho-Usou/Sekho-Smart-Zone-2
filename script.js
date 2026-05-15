@@ -52,7 +52,47 @@ document.addEventListener('DOMContentLoaded', () => {
   setupScrollAnimations();
   setupHeroTouchSwipe();
   setupProductCardTouch();
+  setupActiveNavOnScroll(); // NEW: Scroll-based active nav
 });
+
+// ========== ACTIVE NAV ON SCROLL ==========
+function setupActiveNavOnScroll() {
+  const sections = ['home', 'products', 'about', 'contact'];
+  const navLinks = document.querySelectorAll('.nav-link');
+  const mobileNavLinks = document.querySelectorAll('.mobile-menu .nav-link');
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '-50% 0px -50% 0px', // Trigger when section is in middle of viewport
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const sectionId = entry.target.id;
+        updateActiveNav(sectionId);
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(id => {
+    const section = document.getElementById(id);
+    if (section) observer.observe(section);
+  });
+}
+
+function updateActiveNav(activeSectionId) {
+  const allNavLinks = document.querySelectorAll('.nav-link');
+
+  allNavLinks.forEach(link => {
+    link.classList.remove('active');
+    const href = link.getAttribute('href');
+    if (href === '#' + activeSectionId) {
+      link.classList.add('active');
+    }
+  });
+}
 
 // ========== HEADER FUNCTIONS ==========
 function setupHeaderScroll() {
@@ -86,13 +126,8 @@ function scrollToSection(sectionId) {
   if (element) {
     element.scrollIntoView({ behavior: 'smooth' });
 
-    // Update active nav
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + sectionId) {
-        link.classList.add('active');
-      }
-    });
+    // Update active nav immediately on click
+    updateActiveNav(sectionId);
 
     // Close mobile menu
     document.getElementById('mobileMenu').classList.remove('open');
@@ -325,7 +360,6 @@ function setupProductCardTouch() {
   const productList = document.getElementById('productList');
   if (!productList) return;
 
-  // Add touch feedback for product cards
   productList.addEventListener('touchstart', (e) => {
     const card = e.target.closest('.product-card');
     if (card) {
